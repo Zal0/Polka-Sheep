@@ -123,7 +123,12 @@ void Update_SPRITE_PLAYER() {
 			accum_x.w += speed_x;
 			accum_y.w += speed_y;
 			speed_y += 20;
+			prev_x = THIS->x;
 			if(TranslateSprite(THIS, accum_x.b.h, accum_y.b.h)) {
+				if((prev_x + (INT8)accum_x.b.h) != THIS->x) {
+					speed_x = -speed_x;
+				}
+
 				ChangeState(AIMING);
 			}
 			accum_x.b.h = 0;
