@@ -8,7 +8,7 @@
    Section       : 
    Bank          : 0
    Map size      : 20 x 2
-   Tile set      : windowfont.gbr
+   Tile set      : tiles.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
    Tile offset   : 0
