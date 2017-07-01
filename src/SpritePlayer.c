@@ -103,12 +103,20 @@ void Update_SPRITE_PLAYER() {
 				ChangeState(FLYING);
 			}
 
+#ifndef NDEBUG
 			if(KEY_PRESSED(J_LEFT)) {
-				THIS->x --;
+				TranslateSprite(THIS, -1, 0);
 			}
 			if(KEY_PRESSED(J_RIGHT)) {
-				THIS->x ++;
+				TranslateSprite(THIS, 1, 0);
 			}
+			if(KEY_PRESSED(J_UP)) {
+				TranslateSprite(THIS, 0, -1);
+			}
+			if(KEY_PRESSED(J_DOWN)) {
+				TranslateSprite(THIS, 0, 1);
+			}
+#endif
 			break;
 
 		case FLYING:
