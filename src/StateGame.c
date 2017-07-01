@@ -11,7 +11,7 @@ UINT8 bank_STATE_GAME = 2;
 #include "SpriteManager.h"
 #include "Print.h"
 
-UINT8 collisions[] = {1, 0};
+UINT8 collisions[] = {6, 0};
 
 extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
@@ -25,7 +25,7 @@ void Start_STATE_GAME() {
 
 	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, 50, 50);
 
-	InitScrollTiles(0, 8, tiles, 3);
+	InitScrollTiles(0, 7, tiles, 3);
 	InitScroll(mapWidth, mapHeight, map, collisions, 0, 3);
 	SHOW_BKG;
 
