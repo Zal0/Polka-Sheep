@@ -45,6 +45,7 @@ void Start_STATE_GAME() {
 	scroll_h_border = 2 << 3;\
 	SHOW_WIN;
 	InitWindow(0, 0, 20, 3, window, 3, 0);
+	PRINT(1, 1, "PIZZA PIZZA PIZZA PIZZA");
 #else
 	INIT_CONSOLE(font, 3, 2);
 #endif
