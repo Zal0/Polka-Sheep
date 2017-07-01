@@ -1,6 +1,6 @@
 /*
 
- SRC/PLAYER.H
+ PLAYER.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 16 x 16
-  Tiles                : 0 to 1
+  Tiles                : 0 to 10
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -28,4 +28,4 @@
 /* Start of tile array. */
 extern unsigned char player[];
 
-/* End of SRC/PLAYER.H */
+/* End of PLAYER.H */
