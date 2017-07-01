@@ -99,7 +99,7 @@ void Update_SPRITE_PLAYER() {
 
 			if(KEY_TICKED(J_A)) {
 				speed_x = SIN(sheepAng) << 2;
-				speed_y = COS(sheepAng) << 2;
+				speed_y = COS(sheepAng) << 3;
 				ChangeState(FLYING);
 			}
 
@@ -114,7 +114,7 @@ void Update_SPRITE_PLAYER() {
 		case FLYING:
 			accum_x.w += speed_x;
 			accum_y.w += speed_y;
-			speed_y += 10;
+			speed_y += 20;
 			if(TranslateSprite(THIS, accum_x.b.h, accum_y.b.h)) {
 				ChangeState(AIMING);
 			}
