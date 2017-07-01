@@ -54,6 +54,8 @@ typedef enum {
 SheepState sheep_state;
 fixed accum_x;
 fixed accum_y;
+INT16 speed_x;
+INT16 speed_y;
 
 void ChangeState(SheepState next);
 void Start_SPRITE_PLAYER() {
@@ -85,6 +87,8 @@ void Update_SPRITE_PLAYER() {
 			crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
 
 			if(KEY_TICKED(J_A)) {
+				speed_x = SIN(sheepAng) << 2;
+				speed_y = COS(sheepAng) << 2;
 				ChangeState(FLYING);
 			}
 
@@ -97,8 +101,9 @@ void Update_SPRITE_PLAYER() {
 			break;
 
 		case FLYING:
-			accum_x.w += SIN(sheepAng) << 2;
-			accum_y.w += COS(sheepAng) << 2;
+			accum_x.w += speed_x;
+			accum_y.w += speed_y;
+			speed_y += 10;
 			if(TranslateSprite(THIS, accum_x.b.h, accum_y.b.h)) {
 				ChangeState(AIMING);
 			}
