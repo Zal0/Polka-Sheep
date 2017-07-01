@@ -1,0 +1,8 @@
+#ifndef SPRITE_CROSSHAIR_H
+#define SPRITE_CROSSHAIR_H
+
+#include "main.h"
+
+DECLARE_SPRITE(SPRITE_CROSSHAIR);
+
+#endif
