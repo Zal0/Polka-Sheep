@@ -41,6 +41,10 @@ const UINT8 sin[] = {
 	106,109,112,115,118,121,124,128
 };
 
+UINT8 anim_idle[]   = {2, 0, 1};
+UINT8 anim_flying_r[] = {8, 2, 3, 4, 5, 6, 7, 8, 9};
+UINT8 anim_flying_l[] = {8, 9, 8, 7, 6, 5, 4, 3, 2};
+
 #define SIN(A) (sin[0xFF & A] - 128)
 #define COS(A) (sin[0xFF & (A - 64)] - 128)
 
@@ -74,15 +78,22 @@ void ChangeState(SheepState next) {
 
 	switch (next) {
 		case AIMING:
+			sheepAng = speed_x > 0 ? 64 : -64;
 			crossHair = SpriteManagerAdd(SPRITE_CROSSHAIR, THIS->x, THIS->y);
+			SetSpriteAnim(THIS, anim_idle, 5);
+			break;
+
+		case FLYING:
+			SetSpriteAnim(THIS, speed_x > 0 ? anim_flying_r : anim_flying_l, 25);
 			break;
 	}
 }
 
 void Update_SPRITE_PLAYER() {
+	UINT16 prev_x;
 	switch(sheep_state) {
 		case AIMING:
-			sheepAng += 2 << delta_time;
+			sheepAng += (speed_x > 0 ? -2 : 2) << delta_time;
 			crossHair->x = THIS->x - 4 + 8 + (SIN(sheepAng) >> 3); //-4 to center the cross, +8 to center in the sprite
 			crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
 
