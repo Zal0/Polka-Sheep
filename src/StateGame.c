@@ -13,23 +13,39 @@ UINT8 bank_STATE_GAME = 2;
 
 UINT8 collisions[] = {1, 0};
 
+
+
 extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
 	UINT8 i;
+	UINT16 start_x, start_y;
 
 	SPRITES_8x16;
 	for(i = 0; i != n_sprite_types; ++ i) {
 		SpriteManagerLoad(i);
 	}
 	SHOW_SPRITES;
-
-	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, 50, 50);
+	
+	ScrollFindTile(mapWidth, map, 4, 6, 0, 0, mapWidth, mapHeight, &start_x, &start_y);
+	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, start_y << 3);
 
 	InitScrollTiles(0, 8, tiles, 3);
 	InitScroll(mapWidth, mapHeight, map, collisions, 0, 3);
 	SHOW_BKG;
 
+#ifdef NDEBUG
+	print_target = PRINT_WIN;\
+	print_x = 0;\
+	print_y = 0;\
+	font_idx = 255 - 45;\
+	InitScrollTiles(255 - 45, 45, font, 3);\
+	WX_REG = 7;\
+  WY_REG = (144 - (2 << 3));\
+	scroll_h_border = 2 << 3;\
+	SHOW_WIN;
+#else
 	INIT_CONSOLE(font, 3, 2);
+#endif
 }
 
 void Update_STATE_GAME() {
