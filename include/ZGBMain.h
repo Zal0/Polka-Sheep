@@ -11,8 +11,8 @@ typedef enum {
 
 typedef enum {
 	SPRITE_PLAYER,
-	SPRITE_BIRD,
 	SPRITE_CROSSHAIR,
+	SPRITE_BIRD,
 
 	N_SPRITE_TYPES
 } SPRITE_TYPE;
