@@ -97,6 +97,8 @@ void ChangeState(SheepState next) {
 
 void Update_SPRITE_PLAYER() {
 	UINT16 prev_x;
+	UINT16 prev_y;
+	UINT8 coll_tile;
 	switch(sheep_state) {
 		case AIMING:
 			sheepAng += (speed_x > 0 ? -2 : 2) << delta_time;
@@ -132,12 +134,16 @@ void Update_SPRITE_PLAYER() {
 			speed_y += gravity;
 			
 			prev_x = THIS->x;
-			if(TranslateSprite(THIS, accum_x.b.h, accum_y.b.h)) {
-				if((prev_x + (INT8)accum_x.b.h) != THIS->x) {
-					speed_x = -speed_x;
-				}
+			prev_y = THIS->y;
+			coll_tile = TranslateSprite(THIS, accum_x.b.h, accum_y.b.h);
+			if(coll_tile) {
+				if((prev_y + (INT8)accum_y.b.h) > THIS->y || (coll_tile > 6 && coll_tile < 15)) {
+					if((prev_x + (INT8)accum_x.b.h) != THIS->x) {
+						speed_x = -speed_x;
+					}
 
-				ChangeState(AIMING);
+					ChangeState(AIMING);
+				}
 			}
 			accum_x.b.h = 0;
 			accum_y.b.h = 0;
