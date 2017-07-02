@@ -29,7 +29,7 @@ void Start_STATE_GAME() {
 	}
 	SHOW_SPRITES;
 	
-	ScrollFindTile(mapWidth, map, 4, 6, 0, 0, mapWidth, mapHeight, &start_x, &start_y);
+	ScrollFindTile(mapWidth, map, 15, 6, 0, 0, mapWidth, mapHeight, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, start_y << 3);
 
 	InitScrollTiles(0, 11, tiles, 3);
