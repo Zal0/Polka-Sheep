@@ -20,16 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameParams.c" />
+    <ClCompile Include="src\SpriteBird.c" />
     <ClCompile Include="src\SpriteCrosshair.c" />
     <ClCompile Include="src\SpritePlayer.c" />
     <ClCompile Include="src\StateGame.c" />
+    <ClCompile Include="src\Trig.c" />
     <ClCompile Include="src\ZGBMain.c" />
     <ClCompile Include="src\ZGBMain_Init.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\SpriteBird.h" />
     <ClInclude Include="include\SpriteCrosshair.h" />
     <ClInclude Include="include\SpritePlayer.h" />
     <ClInclude Include="include\StateGame.h" />
+    <ClInclude Include="include\Trig.h" />
     <ClInclude Include="include\ZGBMain.h" />
   </ItemGroup>
   <ItemGroup>
