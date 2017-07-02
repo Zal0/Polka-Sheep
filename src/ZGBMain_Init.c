@@ -13,7 +13,7 @@ UINT8 init_bank = 1;
 #include "../res/src/player.h"
 #include "../res/src/bird.h"
 #include "../res/src/crossair.h"
-#include "../rest/src/wolf.h"
+#include "../res/src/wolf.h"
 
 UINT8 next_state = STATE_GAME;
 
