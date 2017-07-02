@@ -68,6 +68,8 @@ void Start_SPRITE_PLAYER() {
 	THIS->lim_y = 255;
 	THIS->coll_x = 5;
 	THIS->coll_w -= 10;
+	THIS->coll_y = 8;
+	THIS->coll_h = 8;
 
 	sheep_state = NONE;
 	ChangeState(AIMING);
@@ -143,7 +145,7 @@ void Update_SPRITE_PLAYER() {
 					}
 
 					ChangeState(AIMING);
-				}
+				} 
 			}
 			accum_x.b.h = 0;
 			accum_y.b.h = 0;
