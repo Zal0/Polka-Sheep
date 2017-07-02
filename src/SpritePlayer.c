@@ -173,8 +173,10 @@ void Update_SPRITE_PLAYER() {
 					if(expected_x != THIS->x) {
 						if(expected_x > THIS->x) {
 							sheepAngStart = 128;
+							sheepIncr = 2;
 						} else {
 							sheepAngStart = 0;
+							sheepIncr = -2;
 						}
 					} else if(expected_y != THIS->y) { 
 						if(expected_y > THIS->y) {
