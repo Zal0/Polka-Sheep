@@ -15,6 +15,7 @@ struct SpriteBirdData {
 
 void Start_SPRITE_BIRD() {
 	struct  SpriteBirdData* data = (struct  SpriteBirdData*) THIS->custom_data;
+	data->ang = 0;
 	SetSpriteAnim(THIS, anim_flying, 13);
 }
 
