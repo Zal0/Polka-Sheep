@@ -7,6 +7,7 @@ UINT8 bank_SPRITE_PLAYER = 2;
 #include "Keys.h"
 #include "Trig.h"
 #include "Print.h"
+#include "Math.h"
 
 extern const INT8 gravity;
 
@@ -15,7 +16,10 @@ UINT8 anim_flying_r[] = {8, 2, 3, 4, 5, 6, 7, 8, 9};
 UINT8 anim_flying_l[] = {8, 9, 8, 7, 6, 5, 4, 3, 2};
 
 struct Sprite* crossHair;
-UINT8 sheepAng;
+UINT8 sheepAngStart = 64;
+UINT8 sheepAngOffset = 0;
+INT8 sheepIncr = 1;
+
 typedef enum {
 	AIMING,
 	FLYING, 
@@ -60,6 +64,10 @@ void Start_SPRITE_PLAYER() {
 
 	current_energy = max_energy;
 	RefreshLife();
+
+	sheepAngStart = 192;
+	sheepAngOffset = 64;
+	sheepIncr = 2;
 }
 
 void ChangeState(SheepState next) {
@@ -73,7 +81,6 @@ void ChangeState(SheepState next) {
 
 	switch (next) {
 		case AIMING:
-			sheepAng = speed_x > 0 ? 64 : -64;
 			crossHair = SpriteManagerAdd(SPRITE_CROSSHAIR, THIS->x, THIS->y);
 			SetSpriteAnim(THIS, anim_idle, 5);
 			break;
@@ -85,15 +92,26 @@ void ChangeState(SheepState next) {
 }
 
 void Update_SPRITE_PLAYER() {
-	UINT16 prev_x;
-	UINT16 prev_y;
+	UINT16 expected_x;
+	UINT16 expected_y;
 	UINT8 coll_tile;
 	UINT8 i;
 	struct Sprite* spr;
+	UINT8 sheepAng;
 
 	switch(sheep_state) {
 		case AIMING:
-			sheepAng += (speed_x > 0 ? -2 : 2) << delta_time;
+			sheepAngOffset += sheepIncr << delta_time;
+			if(sheepIncr == 2 && sheepAngOffset > 128) {
+				sheepIncr = -2;
+				sheepAngOffset = 127;
+			}
+			if(sheepIncr == -2 && (0x80 & sheepAngOffset)) {
+				sheepIncr = 2;
+				sheepAngOffset = 0;
+			}
+			sheepAng = sheepAngStart + sheepAngOffset;
+
 			crossHair->x = THIS->x - 4 + 8 + (SIN(sheepAng) >> 3); //-4 to center the cross, +8 to center in the sprite
 			crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
 
@@ -125,18 +143,36 @@ void Update_SPRITE_PLAYER() {
 			
 			speed_y += gravity;
 			
-			prev_x = THIS->x;
-			prev_y = THIS->y;
+			expected_x = (THIS->x + (INT8)accum_x.b.h);
+			expected_y = (THIS->y + (INT8)accum_y.b.h);
 			coll_tile = TranslateSprite(THIS, accum_x.b.h, accum_y.b.h);
 			if(coll_tile) {
-				if((prev_y + (INT8)accum_y.b.h) > THIS->y || (coll_tile > 6 && coll_tile < 15)) {
-					if((prev_x + (INT8)accum_x.b.h) != THIS->x) {
-						speed_x = -speed_x;
+				if(expected_y > THIS->y || (coll_tile > 6 && coll_tile < 15)) {
+					
+					if(expected_x != THIS->x) {
+						if(expected_x > THIS->x) {
+							sheepAngStart = 128;
+						} else {
+							sheepAngStart = 0;
+						}
+					} else if(expected_y != THIS->y) { 
+						if(expected_y > THIS->y) {
+							sheepAngStart = 192;
+						} else if(expected_y < THIS->y) {
+							sheepAngStart = 64;
+						}
+
+						if(speed_x > 0) {
+							sheepIncr = 2;
+						} else {
+							sheepIncr = -2;
+						}
 					}
+					sheepAngOffset = 64;
 
 					ChangeState(AIMING);
 				} else {
-					if(speed_y < 0 && ((prev_y + (INT8)accum_y.b.h) != THIS->y)) {
+					if(speed_y < 0 && (expected_y != THIS->y)) {
 						speed_y = 0;
 					}
 				}
