@@ -13,7 +13,8 @@ UINT8 bank_STATE_GAME = 2;
 #include "Print.h"
 #include "Math.h"
 
-UINT8 collisions[] = {6, 0};
+UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 0};
+
 
 INT16 countdown;
 INT8 countdown_tick;

@@ -6,6 +6,8 @@ UINT8 bank_SPRITE_PLAYER = 2;
 #include "SpriteManager.h"
 #include "Keys.h"
 
+extern INT8 gravity;
+
 const UINT8 sin[] = {
 	128,131,134,137,140,143,146,149,
 	152,156,159,162,165,168,171,174,
@@ -64,6 +66,8 @@ INT16 speed_y;
 void ChangeState(SheepState next);
 void Start_SPRITE_PLAYER() {
 	THIS->lim_y = 255;
+	THIS->coll_x = 5;
+	THIS->coll_w -= 10;
 
 	sheep_state = NONE;
 	ChangeState(AIMING);
@@ -93,6 +97,8 @@ void ChangeState(SheepState next) {
 
 void Update_SPRITE_PLAYER() {
 	UINT16 prev_x;
+	UINT16 prev_y;
+	UINT8 coll_tile;
 	switch(sheep_state) {
 		case AIMING:
 			sheepAng += (speed_x > 0 ? -2 : 2) << delta_time;
@@ -124,14 +130,20 @@ void Update_SPRITE_PLAYER() {
 		case FLYING:
 			accum_x.w += speed_x;
 			accum_y.w += speed_y;
-			speed_y += 20;
+			
+			speed_y += gravity;
+			
 			prev_x = THIS->x;
-			if(TranslateSprite(THIS, accum_x.b.h, accum_y.b.h)) {
-				if((prev_x + (INT8)accum_x.b.h) != THIS->x) {
-					speed_x = -speed_x;
-				}
+			prev_y = THIS->y;
+			coll_tile = TranslateSprite(THIS, accum_x.b.h, accum_y.b.h);
+			if(coll_tile) {
+				if((prev_y + (INT8)accum_y.b.h) > THIS->y || (coll_tile > 6 && coll_tile < 15)) {
+					if((prev_x + (INT8)accum_x.b.h) != THIS->x) {
+						speed_x = -speed_x;
+					}
 
-				ChangeState(AIMING);
+					ChangeState(AIMING);
+				}
 			}
 			accum_x.b.h = 0;
 			accum_y.b.h = 0;
