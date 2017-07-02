@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameParams.c" />
     <ClCompile Include="src\SpriteCrosshair.c" />
     <ClCompile Include="src\SpritePlayer.c" />
     <ClCompile Include="src\StateGame.c" />
