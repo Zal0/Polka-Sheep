@@ -135,7 +135,11 @@ void Update_SPRITE_PLAYER() {
 					}
 
 					ChangeState(AIMING);
-				} 
+				} else {
+					if(speed_y < 0 && ((prev_y + (INT8)accum_y.b.h) != THIS->y)) {
+						speed_y = 0;
+					}
+				}
 			}
 			accum_x.b.h = 0;
 			accum_y.b.h = 0;
