@@ -66,6 +66,8 @@ INT16 speed_y;
 void ChangeState(SheepState next);
 void Start_SPRITE_PLAYER() {
 	THIS->lim_y = 255;
+	THIS->coll_x = 5;
+	THIS->coll_w -= 10;
 
 	sheep_state = NONE;
 	ChangeState(AIMING);
