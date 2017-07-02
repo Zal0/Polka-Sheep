@@ -1,6 +1,6 @@
 /*
 
- SRC/TILES.H
+ BIRD.H
 
  Include File.
 
@@ -9,8 +9,8 @@
   Format               : Gameboy 4 color.
   Compression          : None.
   Counter              : None.
-  Tile size            : 8 x 8
-  Tiles                : 0 to 10
+  Tile size            : 16 x 16
+  Tiles                : 0 to 3
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -24,8 +24,8 @@
 
 
 /* Bank of tiles. */
-#define tilesBank 0
+#define birdBank 0
 /* Start of tile array. */
-extern unsigned char tiles[];
+extern unsigned char bird[];
 
-/* End of SRC/TILES.H */
+/* End of BIRD.H */
