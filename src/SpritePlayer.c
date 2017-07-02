@@ -164,7 +164,7 @@ void Update_SPRITE_PLAYER() {
 					Hit();
 				}
 
-				if(expected_y > THIS->y || (coll_tile > 6 && coll_tile < 19)) {
+				if(expected_y > THIS->y || (coll_tile > 6 && coll_tile < 18)) {
 					
 					//Adjust crosshair
 					sheepAngOffset = 64;
@@ -216,6 +216,12 @@ void Update_SPRITE_PLAYER() {
 		if(inmunity < 1) {
 			inmunity = 0;
 			THIS->flags = 0;
+
+			if(sheep_state == AIMING && sheepAngStart == 192) {
+				if(TranslateSprite(THIS, 0, 1) == 18) {
+					Hit();
+				}
+			}
 		}
 	}
 }
