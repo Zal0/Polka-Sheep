@@ -30,8 +30,8 @@ void Start_STATE_GAME() {
 	}
 	SHOW_SPRITES;
 	
-	ScrollFindTile(mapWidth, map, 4, 6, 0, 0, mapWidth, mapHeight, &start_x, &start_y);
-	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, start_y << 3);
+	ScrollFindTile(mapWidth, map, 3, 4, 0, 0, mapWidth, mapHeight, &start_x, &start_y);
+	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
 
 	InitScrollTiles(0, 15, tiles, 3);
 	InitScroll(mapWidth, mapHeight, map, collisions, 0, 3);
