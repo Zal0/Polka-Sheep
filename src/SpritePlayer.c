@@ -6,8 +6,9 @@ UINT8 bank_SPRITE_PLAYER = 2;
 #include "SpriteManager.h"
 #include "Keys.h"
 #include "Trig.h"
+#include "Print.h"
 
-extern INT8 gravity;
+extern const INT8 gravity;
 
 UINT8 anim_idle[]   = {2, 0, 1};
 UINT8 anim_flying_r[] = {8, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -26,6 +27,26 @@ fixed accum_y;
 INT16 speed_x;
 INT16 speed_y;
 
+extern const UINT8 max_energy;
+UINT8 current_energy;
+
+extern const INT8 inmunity_time;
+INT16 inmunity = 0;
+
+
+const UINT8 HEART_TILE = 1;
+const UINT8 EMPTY_HEART_TILE = 2;
+void RefreshLife() {
+	UINT8 i;
+
+	for(i = 0; i != current_energy; ++i) {
+		set_win_tiles(10 + i, 1, 1, 1, &HEART_TILE);
+	}
+	for(; i != max_energy; ++i) {
+		set_win_tiles(10 + i, 1, 1, 1, &EMPTY_HEART_TILE);
+	}
+}
+
 void ChangeState(SheepState next);
 void Start_SPRITE_PLAYER() {
 	THIS->lim_y = 255;
@@ -36,6 +57,9 @@ void Start_SPRITE_PLAYER() {
 
 	sheep_state = NONE;
 	ChangeState(AIMING);
+
+	current_energy = max_energy;
+	RefreshLife();
 }
 
 void ChangeState(SheepState next) {
@@ -118,11 +142,26 @@ void Update_SPRITE_PLAYER() {
 			break;
 	}
 
-	SPRITEMANAGER_ITERATE(i, spr) {
-		if(CheckCollision(THIS, spr)) {
-			if(spr->type == SPRITE_BIRD) {
-				SetState(STATE_GAME);
+	if(inmunity == 0) {
+		SPRITEMANAGER_ITERATE(i, spr) {
+			if(CheckCollision(THIS, spr)) {
+				if(spr->type == SPRITE_BIRD) {
+					current_energy--;
+					RefreshLife();
+					if(current_energy == 0) {
+						SetState(STATE_GAME);
+					} else {
+						THIS->flags = 1 << 4;
+						inmunity = inmunity_time;
+					}
+				}
 			}
+		}
+	} else {
+		inmunity -= (1 << delta_time);
+		if(inmunity < 1) {
+			inmunity = 0;
+			THIS->flags = 0;
 		}
 	}
 }
