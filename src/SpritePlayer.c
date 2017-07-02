@@ -91,6 +91,19 @@ void ChangeState(SheepState next) {
 	}
 }
 
+void Hit() {
+	if(inmunity == 0) {
+			current_energy--;
+			RefreshLife();
+			if(current_energy == 0) {
+				SetState(STATE_GAME);
+			} else {
+				THIS->flags = 1 << 4;
+				inmunity = inmunity_time;
+			}
+	}
+}
+
 void Update_SPRITE_PLAYER() {
 	UINT16 expected_x;
 	UINT16 expected_y;
@@ -147,7 +160,11 @@ void Update_SPRITE_PLAYER() {
 			expected_y = (THIS->y + (INT8)accum_y.b.h);
 			coll_tile = TranslateSprite(THIS, accum_x.b.h, accum_y.b.h);
 			if(coll_tile) {
-				if(expected_y > THIS->y || (coll_tile > 6 && coll_tile < 15)) {
+				if(coll_tile == 18) {
+					Hit();
+				}
+
+				if(expected_y > THIS->y || (coll_tile > 6 && coll_tile < 19)) {
 					
 					//Adjust crosshair
 					sheepAngOffset = 64;
@@ -190,14 +207,7 @@ void Update_SPRITE_PLAYER() {
 		SPRITEMANAGER_ITERATE(i, spr) {
 			if(CheckCollision(THIS, spr)) {
 				if(spr->type == SPRITE_BIRD) {
-					current_energy--;
-					RefreshLife();
-					if(current_energy == 0) {
-						SetState(STATE_GAME);
-					} else {
-						THIS->flags = 1 << 4;
-						inmunity = inmunity_time;
-					}
+					Hit();
 				}
 			}
 		}

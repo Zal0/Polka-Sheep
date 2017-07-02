@@ -14,8 +14,7 @@ UINT8 bank_STATE_GAME = 2;
 #include "Math.h"
 #include "Palette.h"
 
-UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 0};
-
+UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
 INT16 countdown;
 INT8 countdown_tick;
@@ -34,7 +33,7 @@ void Start_STATE_GAME() {
 	ScrollFindTile(mapWidth, map, 3, 4, 0, 0, mapWidth, mapHeight, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
 
-	InitScrollTiles(0, 15, tiles, 3);
+	InitScrollTiles(0, 19, tiles, 3);
 	InitScroll(mapWidth, mapHeight, map, collisions, 0, 3);
 	SHOW_BKG;
 

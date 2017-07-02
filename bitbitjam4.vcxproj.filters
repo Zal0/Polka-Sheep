@@ -9,24 +9,33 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Source Files\Sprites">
+      <UniqueIdentifier>{58a8b4ab-d118-476d-b54d-7c6d852fb497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Sprites">
+      <UniqueIdentifier>{82a72fa5-ae8c-430a-a4a8-712af1bea9c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ZGBMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\StateGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SpritePlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SpriteCrosshair.h">
+    <ClInclude Include="include\Trig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\SpriteBird.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Sprites</Filter>
     </ClInclude>
-    <ClInclude Include="include\Trig.h">
+    <ClInclude Include="include\SpriteCrosshair.h">
+      <Filter>Header Files\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpritePlayer.h">
+      <Filter>Header Files\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpriteWolf.h">
+      <Filter>Header Files\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StateGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -37,23 +46,26 @@
     <ClCompile Include="src\StateGame.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SpritePlayer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ZGBMain_Init.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SpriteCrosshair.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\GameParams.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SpriteBird.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Trig.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteBird.c">
+      <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteCrosshair.c">
+      <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpritePlayer.c">
+      <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteWolf.c">
+      <Filter>Source Files\Sprites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
