@@ -9,11 +9,14 @@ UINT8 init_bank = 1;
 #include "SpriteBird.h"
 #include "SpriteCrosshair.h"
 #include "SpriteWolf.h"
+#include "SpritePolkaman.h"
 
 #include "../res/src/player.h"
 #include "../res/src/bird.h"
 #include "../res/src/crossair.h"
 #include "../res/src/wolf.h"
+#include "../res/src/polkaman.h"
+
 
 UINT8 next_state = STATE_GAME;
 
@@ -29,4 +32,5 @@ void InitSprites() {
 	INIT_SPRITE(SPRITE_CROSSHAIR, crossair, 3, FRAME_8x16, 1);
 	INIT_SPRITE(SPRITE_BIRD, bird, 3, FRAME_16x16, 3);
 	INIT_SPRITE(SPRITE_WOLF, wolf, 3, FRAME_16x16, 4);
+	INIT_SPRITE(SPRITE_POLKAMAN, polkaman, 3, FRAME_16x16, 6);
 }
