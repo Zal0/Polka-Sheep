@@ -149,6 +149,8 @@ void Update_SPRITE_PLAYER() {
 			if(coll_tile) {
 				if(expected_y > THIS->y || (coll_tile > 6 && coll_tile < 15)) {
 					
+					//Adjust crosshair
+					sheepAngOffset = 64;
 					if(expected_x != THIS->x) {
 						if(expected_x > THIS->x) {
 							sheepAngStart = 128;
@@ -158,17 +160,19 @@ void Update_SPRITE_PLAYER() {
 					} else if(expected_y != THIS->y) { 
 						if(expected_y > THIS->y) {
 							sheepAngStart = 192;
+							
+							//Look on the current direction
+							if(speed_x > 0) {
+								sheepAngOffset = 128;
+							} else {
+								sheepAngOffset = 0;
+							}
+
 						} else if(expected_y < THIS->y) {
 							sheepAngStart = 64;
 						}
-
-						if(speed_x > 0) {
-							sheepIncr = 2;
-						} else {
-							sheepIncr = -2;
-						}
 					}
-					sheepAngOffset = 64;
+					
 
 					ChangeState(AIMING);
 				} else {
