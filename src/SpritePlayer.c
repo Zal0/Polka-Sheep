@@ -64,6 +64,9 @@ void Update_SPRITE_PLAYER() {
 	UINT16 prev_x;
 	UINT16 prev_y;
 	UINT8 coll_tile;
+	UINT8 i;
+	struct Sprite* spr;
+
 	switch(sheep_state) {
 		case AIMING:
 			sheepAng += (speed_x > 0 ? -2 : 2) << delta_time;
@@ -113,6 +116,14 @@ void Update_SPRITE_PLAYER() {
 			accum_x.b.h = 0;
 			accum_y.b.h = 0;
 			break;
+	}
+
+	SPRITEMANAGER_ITERATE(i, spr) {
+		if(CheckCollision(THIS, spr)) {
+			if(spr->type == SPRITE_BIRD) {
+				SetState(STATE_GAME);
+			}
+		}
 	}
 }
 
