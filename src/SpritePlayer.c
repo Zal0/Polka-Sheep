@@ -154,7 +154,9 @@ void Update_SPRITE_PLAYER() {
 			accum_x.w += speed_x;
 			accum_y.w += speed_y;
 			
-			speed_y += gravity;
+			if(speed_y < 1024) {
+				speed_y += gravity;
+			}
 			
 			expected_x = (THIS->x + (INT8)accum_x.b.h);
 			expected_y = (THIS->y + (INT8)accum_y.b.h);
