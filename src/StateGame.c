@@ -11,10 +11,12 @@ UINT8 bank_STATE_GAME = 2;
 #include "Scroll.h"
 #include "SpriteManager.h"
 #include "Print.h"
+#include "Math.h"
 
 UINT8 collisions[] = {6, 0};
 
-
+INT16 countdown;
+INT8 countdown_tick;
 
 extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
@@ -45,11 +47,21 @@ void Start_STATE_GAME() {
 	scroll_h_border = 2 << 3;\
 	SHOW_WIN;
 	InitWindow(0, 0, 20, 3, window, 3, 0);
-	PRINT(1, 1, "PIZZA PIZZA PIZZA PIZZA");
 #else
 	INIT_CONSOLE(font, 3, 2);
 #endif
+
+	countdown = 1024;
+	countdown_tick = -1; //Force first update
 }
 
 void Update_STATE_GAME() {
+	//Timer update
+	countdown_tick -= 1 << delta_time;
+	if(U_LESS_THAN(countdown_tick, 0)) {
+		countdown_tick += 60;
+		countdown --;
+		PRINT_POS(0, 1);
+		Printf("t: %u ", countdown);
+	}
 }
