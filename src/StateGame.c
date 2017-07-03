@@ -13,11 +13,13 @@ UINT8 bank_STATE_GAME = 2;
 #include "Print.h"
 #include "Math.h"
 #include "Palette.h"
+#include "string.h"
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
 INT16 countdown;
 INT8 countdown_tick;
+extern UINT16 lifes_y[];
 
 extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
@@ -54,6 +56,8 @@ void Start_STATE_GAME() {
 
 	countdown = 1024;
 	countdown_tick = -1; //Force first update
+
+	lifes_y[0] = 0; //reset lifes y array
 }
 
 const UINT8 pals[] = {PAL_DEF(0, 1, 2, 3), PAL_DEF(0, 0, 0, 0)};

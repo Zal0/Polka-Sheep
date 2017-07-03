@@ -8,6 +8,7 @@ UINT8 bank_SPRITE_PLAYER = 2;
 #include "Trig.h"
 #include "Print.h"
 #include "Math.h"
+#include "Vector.h"
 
 extern const INT8 gravity;
 
@@ -19,6 +20,8 @@ struct Sprite* crossHair;
 UINT8 sheepAngStart = 64;
 UINT8 sheepAngOffset = 0;
 INT8 sheepIncr = 1;
+
+extern UINT8 lifes_y[];
 
 typedef enum {
 	AIMING,
@@ -212,6 +215,15 @@ void Update_SPRITE_PLAYER() {
 			if(CheckCollision(THIS, spr)) {
 				if(spr->type == SPRITE_BIRD || spr->type == SPRITE_WOLF) {
 					Hit();
+				} else if(spr->type == SPRITE_LIFE) {
+					SpriteManagerRemove(i);
+
+					VectorAdd(lifes_y, spr->y >> 3);
+
+					if(current_energy != max_energy) {
+						current_energy++;
+						RefreshLife();
+					}
 				}
 			}
 		}
