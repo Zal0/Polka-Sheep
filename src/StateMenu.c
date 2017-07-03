@@ -20,7 +20,7 @@ void Start_STATE_MENU() {
 }
 
 void Update_STATE_MENU() {
-	if(keys) {
+	if(previous_keys && !keys) {
 		SetState(STATE_GAME);
 	}
 }

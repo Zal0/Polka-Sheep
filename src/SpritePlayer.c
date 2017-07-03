@@ -117,21 +117,23 @@ void Update_SPRITE_PLAYER() {
 
 	switch(sheep_state) {
 		case AIMING:
-			sheepAngOffset += sheepIncr << delta_time;
-			if(sheepIncr == 2 && sheepAngOffset > 128) {
-				sheepIncr = -2;
-				sheepAngOffset = 127;
+			if(!KEY_PRESSED(J_A)) {
+				sheepAngOffset += sheepIncr << delta_time;
+				if(sheepIncr == 2 && sheepAngOffset > 128) {
+					sheepIncr = -2;
+					sheepAngOffset = 127;
+				}
+				if(sheepIncr == -2 && (0x80 & sheepAngOffset)) {
+					sheepIncr = 2;
+					sheepAngOffset = 0;
+				}
+				sheepAng = sheepAngStart + sheepAngOffset;
+			
+				crossHair->x = THIS->x - 4 + 8 + (SIN(sheepAng) >> 3); //-4 to center the cross, +8 to center in the sprite
+				crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
 			}
-			if(sheepIncr == -2 && (0x80 & sheepAngOffset)) {
-				sheepIncr = 2;
-				sheepAngOffset = 0;
-			}
-			sheepAng = sheepAngStart + sheepAngOffset;
 
-			crossHair->x = THIS->x - 4 + 8 + (SIN(sheepAng) >> 3); //-4 to center the cross, +8 to center in the sprite
-			crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
-
-			if(KEY_TICKED(J_A)) {
+			if(KEY_RELEASED(J_A)) {
 				speed_x = SIN(sheepAng) << 2;
 				speed_y = COS(sheepAng) << 3;
 				ChangeState(FLYING);
