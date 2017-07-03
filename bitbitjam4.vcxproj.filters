@@ -38,6 +38,9 @@
     <ClInclude Include="include\StateGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\StateMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ZGBMain.c">
@@ -66,6 +69,9 @@
     </ClCompile>
     <ClCompile Include="src\SpriteWolf.c">
       <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateMenu.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
