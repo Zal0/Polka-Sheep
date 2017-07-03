@@ -20,7 +20,7 @@ void Start_STATE_MENU() {
 }
 
 void Update_STATE_MENU() {
-	if(KEY_TICKED(J_START)) {
+	if(keys) {
 		SetState(STATE_GAME);
 	}
 }
