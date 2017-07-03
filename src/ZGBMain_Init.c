@@ -12,6 +12,7 @@ UINT8 init_bank = 1;
 #include "SpriteWolf.h"
 #include "SpritePolkaman.h"
 #include "SpriteLife.h"
+#include "SpritePlatform.h"
 
 #include "../res/src/player.h"
 #include "../res/src/bird.h"
@@ -19,6 +20,7 @@ UINT8 init_bank = 1;
 #include "../res/src/wolf.h"
 #include "../res/src/polkaman.h"
 #include "../res/src/life.h"
+#include "../res/src/platform.h"
 
 
 UINT8 next_state = STATE_MENU;//STATE_GAME;
@@ -38,4 +40,5 @@ void InitSprites() {
 	INIT_SPRITE(SPRITE_WOLF, wolf, 3, FRAME_16x16, 4);
 	INIT_SPRITE(SPRITE_POLKAMAN, polkaman, 3, FRAME_16x16, 6);
 	INIT_SPRITE(SPRITE_LIFE, life, 3, FRAME_8x16, 2);
+	INIT_SPRITE(SPRITE_PLATFORM, platform, 3, FRAME_16x16, 1);
 }

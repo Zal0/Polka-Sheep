@@ -19,6 +19,7 @@ UINT8 anim_flying_l[] = {8, 9, 8, 7, 6, 5, 4, 3, 2};
 struct Sprite* crossHair;
 UINT8 sheepAngStart = 64;
 UINT8 sheepAngOffset = 0;
+UINT8 sheepAngMax = 128;
 INT8 sheepIncr = 1;
 
 extern UINT8 lifes_y[];
@@ -33,6 +34,9 @@ fixed accum_x;
 fixed accum_y;
 INT16 speed_x;
 INT16 speed_y;
+
+struct Sprite* player_parent = 0;
+struct Sprite* last_platform = 0;
 
 extern const UINT8 max_energy;
 UINT8 current_energy;
@@ -63,6 +67,8 @@ void Start_SPRITE_PLAYER() {
 	THIS->coll_h = 8;
 
 	sheep_state = NONE;
+	player_parent = 0;
+	last_platform = 0;
 	ChangeState(AIMING);
 
 	current_energy = max_energy;
@@ -86,10 +92,18 @@ void ChangeState(SheepState next) {
 		case AIMING:
 			crossHair = SpriteManagerAdd(SPRITE_CROSSHAIR, THIS->x, THIS->y);
 			SetSpriteAnim(THIS, anim_idle, 5);
+			if(player_parent == 0) {
+				sheepAngMax = 128;
+				last_platform = 0;
+			} else {
+				sheepAngMax = 255;
+			}
 			break;
 
 		case FLYING:
 			SetSpriteAnim(THIS, speed_x > 0 ? anim_flying_r : anim_flying_l, 25);
+			last_platform = player_parent;
+			player_parent = 0;
 			break;
 	}
 }
@@ -119,19 +133,20 @@ void Update_SPRITE_PLAYER() {
 		case AIMING:
 			if(!KEY_PRESSED(J_A)) {
 				sheepAngOffset += sheepIncr << delta_time;
-				if(sheepIncr == 2 && sheepAngOffset > 128) {
+
+				if(sheepIncr == 2 && sheepAngOffset > sheepAngMax) {
 					sheepIncr = -2;
-					sheepAngOffset = 127;
+					sheepAngOffset = sheepAngMax - 1;
 				}
 				if(sheepIncr == -2 && (0x80 & sheepAngOffset)) {
 					sheepIncr = 2;
 					sheepAngOffset = 0;
 				}
-				sheepAng = sheepAngStart + sheepAngOffset;
-			
-				crossHair->x = THIS->x - 4 + 8 + (SIN(sheepAng) >> 3); //-4 to center the cross, +8 to center in the sprite
-				crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
 			}
+
+			sheepAng = sheepAngStart + sheepAngOffset;			
+			crossHair->x = THIS->x - 4 + 8 + (SIN(sheepAng) >> 3); //-4 to center the cross, +8 to center in the sprite
+			crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
 
 			if(KEY_RELEASED(J_A)) {
 				speed_x = SIN(sheepAng) << 2;
@@ -226,6 +241,9 @@ void Update_SPRITE_PLAYER() {
 						current_energy++;
 						RefreshLife();
 					}
+				} else if(spr->type == SPRITE_PLATFORM && last_platform != spr && sheep_state == FLYING) {
+					player_parent = spr;
+					ChangeState(AIMING);
 				}
 			}
 		}

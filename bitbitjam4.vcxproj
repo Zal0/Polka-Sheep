@@ -23,6 +23,7 @@
     <ClCompile Include="src\SpriteBird.c" />
     <ClCompile Include="src\SpriteCrosshair.c" />
     <ClCompile Include="src\SpriteLife.c" />
+    <ClCompile Include="src\SpritePlatform.c" />
     <ClCompile Include="src\SpritePlayer.c" />
     <ClCompile Include="src\SpriteWolf.c" />
     <ClCompile Include="src\StateGame.c" />
@@ -35,6 +36,7 @@
     <ClInclude Include="include\SpriteBird.h" />
     <ClInclude Include="include\SpriteCrosshair.h" />
     <ClInclude Include="include\SpriteLife.h" />
+    <ClInclude Include="include\SpritePlatform.h" />
     <ClInclude Include="include\SpritePlayer.h" />
     <ClInclude Include="include\SpriteWolf.h" />
     <ClInclude Include="include\StateGame.h" />
