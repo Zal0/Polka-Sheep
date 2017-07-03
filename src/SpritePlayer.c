@@ -210,7 +210,7 @@ void Update_SPRITE_PLAYER() {
 	if(inmunity == 0) {
 		SPRITEMANAGER_ITERATE(i, spr) {
 			if(CheckCollision(THIS, spr)) {
-				if(spr->type == SPRITE_BIRD) {
+				if(spr->type == SPRITE_BIRD || spr->type == SPRITE_WOLF) {
 					Hit();
 				}
 			}
