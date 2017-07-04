@@ -15,6 +15,7 @@ extern const INT8 gravity;
 UINT8 anim_idle[]   = {2, 0, 1};
 UINT8 anim_flying_r[] = {8, 2, 3, 4, 5, 6, 7, 8, 9};
 UINT8 anim_flying_l[] = {8, 9, 8, 7, 6, 5, 4, 3, 2};
+UINT8 anim_dancing[] = {2, 10, 11};
 
 struct Sprite* crossHair;
 UINT8 sheepAngStart = 64;
@@ -244,6 +245,9 @@ void Update_SPRITE_PLAYER() {
 				} else if(spr->type == SPRITE_PLATFORM && last_platform != spr && sheep_state == FLYING) {
 					player_parent = spr;
 					ChangeState(AIMING);
+				} else if(spr->type == SPRITE_BUBBLE) {
+					SpriteManagerRemove(i);
+					SpriteManagerAdd(SPRITE_POP, spr->x, spr->y);
 				}
 			}
 		}
