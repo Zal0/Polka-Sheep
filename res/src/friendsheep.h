@@ -1,6 +1,6 @@
 /*
 
- PLAYER.H
+ FRIENDSHEEP.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 16 x 16
-  Tiles                : 0 to 11
+  Tiles                : 0 to 1
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -24,8 +24,8 @@
 
 
 /* Bank of tiles. */
-#define playerBank 0
+#define friendsheepBank 0
 /* Start of tile array. */
-extern unsigned char player[];
+extern unsigned char friendsheep[];
 
-/* End of PLAYER.H */
+/* End of FRIENDSHEEP.H */

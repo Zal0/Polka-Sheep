@@ -21,10 +21,13 @@
   <ItemGroup>
     <ClCompile Include="src\GameParams.c" />
     <ClCompile Include="src\SpriteBird.c" />
+    <ClCompile Include="src\SpriteBubble.c" />
     <ClCompile Include="src\SpriteCrosshair.c" />
+    <ClCompile Include="src\SpriteFriendSheep.c" />
     <ClCompile Include="src\SpriteLife.c" />
     <ClCompile Include="src\SpritePlatform.c" />
     <ClCompile Include="src\SpritePlayer.c" />
+    <ClCompile Include="src\SpritePop.c" />
     <ClCompile Include="src\SpriteWolf.c" />
     <ClCompile Include="src\StateGame.c" />
     <ClCompile Include="src\StateMenu.c" />
@@ -34,10 +37,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SpriteBird.h" />
+    <ClInclude Include="include\SpriteBubble.h" />
     <ClInclude Include="include\SpriteCrosshair.h" />
+    <ClInclude Include="include\SpriteFriendSheep.h" />
     <ClInclude Include="include\SpriteLife.h" />
     <ClInclude Include="include\SpritePlatform.h" />
     <ClInclude Include="include\SpritePlayer.h" />
+    <ClInclude Include="include\SpritePop.h" />
     <ClInclude Include="include\SpriteWolf.h" />
     <ClInclude Include="include\StateGame.h" />
     <ClInclude Include="include\StateMenu.h" />

@@ -1,6 +1,6 @@
 /*
 
- PLAYER.H
+ BUBBLE.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 16 x 16
-  Tiles                : 0 to 11
+  Tiles                : 0 to 1
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -24,8 +24,8 @@
 
 
 /* Bank of tiles. */
-#define playerBank 0
+#define bubbleBank 0
 /* Start of tile array. */
-extern unsigned char player[];
+extern unsigned char bubble[];
 
-/* End of PLAYER.H */
+/* End of BUBBLE.H */

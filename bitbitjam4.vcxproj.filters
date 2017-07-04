@@ -47,6 +47,15 @@
     <ClInclude Include="include\SpritePlatform.h">
       <Filter>Header Files\Sprites</Filter>
     </ClInclude>
+    <ClInclude Include="include\SpriteBubble.h">
+      <Filter>Header Files\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpriteFriendSheep.h">
+      <Filter>Header Files\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpritePop.h">
+      <Filter>Header Files\Sprites</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ZGBMain.c">
@@ -83,6 +92,15 @@
       <Filter>Source Files\Sprites</Filter>
     </ClCompile>
     <ClCompile Include="src\SpritePlatform.c">
+      <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteFriendSheep.c">
+      <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpritePop.c">
+      <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpriteBubble.c">
       <Filter>Source Files\Sprites</Filter>
     </ClCompile>
   </ItemGroup>
