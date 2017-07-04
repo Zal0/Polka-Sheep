@@ -19,7 +19,7 @@ void Start_STATE_MENU() {
 	InitScroll(screen_startWidth, screen_startHeight, screen_start, 0, 0, 3);
 	SHOW_BKG;
 
-	PlayMusic(polka_start_mod_Data, 4, 1);
+	PlayMusic(polka_start_mod_Data, 4, 0);
 }
 
 void Update_STATE_MENU() {
