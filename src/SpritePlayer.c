@@ -73,7 +73,11 @@ void Start_SPRITE_PLAYER() {
 	sheep_state = NONE;
 	player_parent = 0;
 	last_platform = 0;
-	ChangeState(AIMING);
+	speed_x = 0;
+	speed_y = 0;
+	accum_x.w = 0;
+	accum_y.w = 0;
+	ChangeState(FLYING);
 
 	current_energy = max_energy;
 	RefreshLife();
