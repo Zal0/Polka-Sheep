@@ -15,6 +15,12 @@
     <Filter Include="Header Files\Sprites">
       <UniqueIdentifier>{82a72fa5-ae8c-430a-a4a8-712af1bea9c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{9192cc62-b67d-4ffc-862e-f5d7891a31f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{4e8b45f5-be4f-476d-8af3-3709df3a249f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ZGBMain.h">
@@ -35,12 +41,6 @@
     <ClInclude Include="include\SpriteWolf.h">
       <Filter>Header Files\Sprites</Filter>
     </ClInclude>
-    <ClInclude Include="include\StateGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\StateMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\SpriteLife.h">
       <Filter>Header Files\Sprites</Filter>
     </ClInclude>
@@ -56,12 +56,15 @@
     <ClInclude Include="include\SpritePop.h">
       <Filter>Header Files\Sprites</Filter>
     </ClInclude>
+    <ClInclude Include="include\StateGame.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StateMenu.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ZGBMain.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StateGame.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ZGBMain_Init.c">
@@ -85,9 +88,6 @@
     <ClCompile Include="src\SpriteWolf.c">
       <Filter>Source Files\Sprites</Filter>
     </ClCompile>
-    <ClCompile Include="src\StateMenu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\SpriteLife.c">
       <Filter>Source Files\Sprites</Filter>
     </ClCompile>
@@ -102,6 +102,12 @@
     </ClCompile>
     <ClCompile Include="src\SpriteBubble.c">
       <Filter>Source Files\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateGame.c">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateMenu.c">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

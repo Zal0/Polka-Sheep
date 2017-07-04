@@ -16,7 +16,6 @@ UINT8 bank_STATE_GAME = 2;
 #include "string.h"
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
-extern const unsigned char * const polka_start_mod_Data[];
 
 INT16 countdown;
 INT8 countdown_tick;
@@ -59,8 +58,6 @@ void Start_STATE_GAME() {
 	countdown_tick = -1; //Force first update
 
 	lifes_y[0] = 0; //reset lifes y array
-
-	PlayMusic(polka_start_mod_Data, 4, 1);
 }
 
 const UINT8 pals[] = {PAL_DEF(0, 1, 2, 3), PAL_DEF(0, 0, 0, 0)};
