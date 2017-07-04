@@ -9,6 +9,7 @@ UINT8 bank_SPRITE_PLAYER = 2;
 #include "Print.h"
 #include "Math.h"
 #include "Vector.h"
+#include "Scroll.h"
 
 extern const INT8 gravity;
 
@@ -28,6 +29,8 @@ extern UINT8 lifes_y[];
 typedef enum {
 	AIMING,
 	FLYING, 
+	DANCING,
+
 	NONE
 } SheepState;
 SheepState sheep_state;
@@ -105,6 +108,10 @@ void ChangeState(SheepState next) {
 			SetSpriteAnim(THIS, speed_x > 0 ? anim_flying_r : anim_flying_l, 25);
 			last_platform = player_parent;
 			player_parent = 0;
+			break;
+
+		case DANCING:
+			SetSpriteAnim(THIS, anim_dancing, 4);
 			break;
 	}
 }
@@ -214,7 +221,6 @@ void Update_SPRITE_PLAYER() {
 							sheepAngStart = 64;
 						}
 					}
-					
 
 					ChangeState(AIMING);
 				} else {
@@ -248,6 +254,8 @@ void Update_SPRITE_PLAYER() {
 				} else if(spr->type == SPRITE_BUBBLE) {
 					SpriteManagerRemove(i);
 					SpriteManagerAdd(SPRITE_POP, spr->x, spr->y);
+					SpriteManagerAdd(SPRITE_FRIENDSHEEP, spr->x, spr->y);
+					ChangeState(DANCING);
 				}
 			}
 		}

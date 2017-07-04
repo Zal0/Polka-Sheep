@@ -2,7 +2,11 @@
 #include "SpriteFRIENDSHEEP.h"
 UINT8 bank_SPRITE_FRIENDSHEEP = 2;
 
+#include "SpriteManager.h"
+UINT8 anim_friendsheep_idle[] = {2, 0, 1};
+
 void Start_SPRITE_FRIENDSHEEP() {
+	SetSpriteAnim(THIS, anim_friendsheep_idle, 4);
 }
 
 void Update_SPRITE_FRIENDSHEEP() {
