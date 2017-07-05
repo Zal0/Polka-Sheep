@@ -36,6 +36,8 @@ typedef enum {
 } GameState;
 GameState game_state;
 
+extern const unsigned char * const polka_level1_mod_Data[];
+
 extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
 	UINT8 i;
@@ -76,6 +78,8 @@ void Start_STATE_GAME() {
 	
 	friendsheep_sprite = 0;
 	game_state = PLAYING;
+
+	PlayMusic(polka_level1_mod_Data, 4, 1);
 }
 
 #define END_Y 85
