@@ -14,11 +14,11 @@
 const struct LevelInfo levels[] = {
 	{LEVEL(maplevel1,                     3)},
 	{LEVEL(maplevellobo,                  3)},
-	{LEVEL(maplevelpajaro,                3)},
 	{LEVEL(maplevelpuzzlesencilloylobo,   3)},
+	{LEVEL(maplevelpajaro,                3)},
 	{LEVEL(maplevelsubida,                3)},
-	{LEVEL(maplevelpinchosabajo,          5)},
 	{LEVEL(maplevelplataformashorizontal, 5)},
+	{LEVEL(maplevelpinchosabajo,          5)},
 	{LEVEL(maplevelplataformaslobopajaro, 5)},
 };
 
