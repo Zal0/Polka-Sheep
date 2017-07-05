@@ -22,4 +22,4 @@ const struct LevelInfo levels[] = {
 	{LEVEL(maplevelplataformaslobopajaro, 5)},
 };
 
-UINT8 current_level = 4;
+UINT8 current_level = 0;
