@@ -7,7 +7,7 @@
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 34 x 70
+   Map size      : 34 x 73
    Tile set      : tiles.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -19,7 +19,7 @@
 */
 
 #define maplevelsubidapajaritosWidth 34
-#define maplevelsubidapajaritosHeight 70
+#define maplevelsubidapajaritosHeight 73
 #define maplevelsubidapajaritosBank 0
 
 extern unsigned char maplevelsubidapajaritos[];
