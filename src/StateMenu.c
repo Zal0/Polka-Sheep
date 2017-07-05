@@ -11,7 +11,7 @@ UINT8 bank_STATE_MENU = 2;
 #include "../res/src/screen_start_tileset.h"
 
 extern const unsigned char * const polka_start_mod_Data[];
-
+extern UINT8 current_level;
 void Start_STATE_MENU() {
 	SetPalette(BG_PALETTE, 0, 8, bgPALMenu, bank_STATE_MENU);
 
@@ -24,6 +24,7 @@ void Start_STATE_MENU() {
 
 void Update_STATE_MENU() {
 	if(previous_keys && !keys) {
+		current_level = 0;
 		SetState(STATE_GAME);
 	}
 }

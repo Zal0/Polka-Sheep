@@ -3,8 +3,6 @@
 UINT8 bank_STATE_GAME = 2;
 
 #include "../res/src/font.h"
-#include "../res/src/tiles.h"
-#include "../res/src/map.h"
 #include "../res/src/window.h"
 #include "../res/src/level_complete.h"
 
@@ -18,7 +16,37 @@ UINT8 bank_STATE_GAME = 2;
 #include "Palette.h"
 #include "Keys.h"
 
+#include "../res/src/tiles.h"
+#include "../res/src/maplevel1.h"
+#include "../res/src/maplevellobo.h"
+#include "../res/src/maplevelpajaro.h"
+#include "../res/src/maplevelpuzzlesencilloylobo.h"
+#include "../res/src/maplevelsubida.h"
+#include "../res/src/maplevelpinchosabajo.h"
+#include "../res/src/maplevelplataformashorizontal.h"
+#include "../res/src/maplevelplataformaslobopajaro.h"
+
+typedef struct LevelInfo {
+	UINT16 w;
+	UINT16 h;
+	UINT8* map;
+	UINT8 bank;
+};
+#define LEVEL(A, BANK) A##Width, A##Height, A, BANK
+const struct LevelInfo levels[] = {
+	{LEVEL(maplevel1,                     3)},
+	{LEVEL(maplevellobo,                  3)},
+	{LEVEL(maplevelpajaro,                3)},
+	{LEVEL(maplevelpuzzlesencilloylobo,   3)},
+	{LEVEL(maplevelsubida,                3)},
+	{LEVEL(maplevelpinchosabajo,          5)},
+	{LEVEL(maplevelplataformashorizontal, 5)},
+	{LEVEL(maplevelplataformaslobopajaro, 5)},
+};
+
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
+
+UINT8 current_level = 0;
 
 INT16 countdown;
 INT8 countdown_tick;
@@ -37,21 +65,14 @@ extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
 	UINT8 i;
 	UINT16 start_x, start_y;
+	const struct LevelInfo* level = &levels[current_level];
 
 	SPRITES_8x16;
 	for(i = 0; i != n_sprite_types; ++ i) {
 		SpriteManagerLoad(i);
 	}
 	SHOW_SPRITES;
-	
-	ScrollFindTile(mapWidth, map, 3, 4, 0, 0, mapWidth, mapHeight, &start_x, &start_y);
-	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
 
-	InitScrollTiles(0, 128, tiles, 3);
-	InitScroll(mapWidth, mapHeight, map, collisions, 0, 3);
-	SHOW_BKG;
-
-#ifdef NDEBUG
 	print_target = PRINT_WIN;\
 	print_x = 0;\
 	print_y = 0;\
@@ -62,9 +83,16 @@ void Start_STATE_GAME() {
 	scroll_h_border = 2 << 3;\
 	SHOW_WIN;
 	InitWindow(0, 0, 20, 3, window, 3, 0);
-#else
-	INIT_CONSOLE(font, 3, 2);
-#endif
+	DPRINT(6, 0, " DEBUG ");
+	PRINT_POS(0, 1);
+	Printf("Level %d", (UINT16)(current_level + 1));
+	
+	ScrollFindTile(level->w, level->map, level->bank, 4, 0, 0, level->w, level->h, &start_x, &start_y);
+	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
+
+	InitScrollTiles(0, 128, tiles, 3);
+	InitScroll(level->w, level->h, level->map, collisions, 0, level->bank);
+	SHOW_BKG;
 
 	countdown = 1024;
 	countdown_tick = -1; //Force first update
@@ -87,13 +115,13 @@ void Update_STATE_GAME() {
 	switch(game_state) {
 		case PLAYING:
 			//Timer update
-			countdown_tick -= 1 << delta_time;
+			/*countdown_tick -= 1 << delta_time;
 			if(U_LESS_THAN(countdown_tick, 0)) {
 				countdown_tick += 60;
 				countdown --;
 				PRINT_POS(0, 1);
 				Printf("t: %u ", countdown);
-			}
+			}*/
 
 			pal_tick -= 1 << delta_time;
 			if(U_LESS_THAN(pal_tick, 0)) {
@@ -113,6 +141,13 @@ void Update_STATE_GAME() {
 					}
 				}
 			}
+
+#ifndef NDEBUG
+			if(KEY_TICKED(J_SELECT)) {
+				current_level ++;
+				SetState(STATE_GAME);
+			}
+#endif
 			break;
 
 		case LEVEL_COMPLETE:
@@ -133,6 +168,7 @@ void Update_STATE_GAME() {
 				PRINT(3, 6, "LEVEL COMPLETE!");
 			} else if(level_complete_time > 130) {
 					if(previous_keys && !keys) {
+						current_level ++;
 						SetState(STATE_GAME);
 					}
 			}
