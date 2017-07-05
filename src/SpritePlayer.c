@@ -87,6 +87,8 @@ void Start_SPRITE_PLAYER() {
 	sheepAngOffset = 64;
 	sheepIncr = 2;
 
+	inmunity = 0;
+
 	player_sprite = THIS;
 }
 
@@ -241,32 +243,32 @@ void Update_SPRITE_PLAYER() {
 			break;
 	}
 
-	if(inmunity == 0) {
-		SPRITEMANAGER_ITERATE(i, spr) {
-			if(CheckCollision(THIS, spr)) {
-				if(spr->type == SPRITE_BIRD || spr->type == SPRITE_WOLF) {
-					Hit();
-				} else if(spr->type == SPRITE_LIFE) {
-					SpriteManagerRemove(i);
+	SPRITEMANAGER_ITERATE(i, spr) {
+		if(CheckCollision(THIS, spr)) {
+			if(spr->type == SPRITE_BIRD || spr->type == SPRITE_WOLF) {
+				Hit();
+			} else if(spr->type == SPRITE_LIFE) {
+				SpriteManagerRemove(i);
 
-					VectorAdd(lifes_y, spr->y >> 3);
+				VectorAdd(lifes_y, spr->y >> 3);
 
-					if(current_energy != max_energy) {
-						current_energy++;
-						RefreshLife();
-					}
-				} else if(spr->type == SPRITE_PLATFORM && last_platform != spr && sheep_state == FLYING) {
-					player_parent = spr;
-					ChangeState(AIMING);
-				} else if(spr->type == SPRITE_BUBBLE) {
-					SpriteManagerRemove(i);
-					SpriteManagerAdd(SPRITE_POP, spr->x, spr->y);
-					SpriteManagerAdd(SPRITE_FRIENDSHEEP, spr->x, spr->y + 8);
-					ChangeState(DANCING);
+				if(current_energy != max_energy) {
+					current_energy++;
+					RefreshLife();
 				}
+			} else if(spr->type == SPRITE_PLATFORM && last_platform != spr && sheep_state == FLYING) {
+				player_parent = spr;
+				ChangeState(AIMING);
+			} else if(spr->type == SPRITE_BUBBLE) {
+				SpriteManagerRemove(i);
+				SpriteManagerAdd(SPRITE_POP, spr->x, spr->y);
+				SpriteManagerAdd(SPRITE_FRIENDSHEEP, spr->x, spr->y + 8);
+				ChangeState(DANCING);
 			}
 		}
-	} else {
+	}
+
+	if(inmunity != 0) {
 		inmunity -= (1 << delta_time);
 		if(inmunity < 1) {
 			inmunity = 0;
