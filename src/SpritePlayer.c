@@ -80,7 +80,6 @@ void Start_SPRITE_PLAYER() {
 	accum_y.w = 0;
 	ChangeState(AIMING);
 
-	current_energy = max_energy;
 	RefreshLife();
 
 	sheepAngStart = 192;

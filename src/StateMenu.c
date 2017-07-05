@@ -23,11 +23,14 @@ void Start_STATE_MENU() {
 	PlayMusic(polka_start_mod_Data, 4, 0);
 }
 
+extern const UINT8 max_energy;
+extern UINT8 current_energy;
 void Update_STATE_MENU() {
 	if(previous_keys && !keys) {
 #ifdef NDEBUG
 		current_level = 0;
 #endif 
+		current_energy = max_energy;
 		SetState(STATE_GAME);
 	}
 }
