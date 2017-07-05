@@ -2,10 +2,11 @@
 #include "StateGame.h"
 UINT8 bank_STATE_GAME = 2;
 
-#include "..\res\src\font.h"
-#include "..\res\src\tiles.h"
-#include "..\res\src\map.h"
-#include "..\res\src\window.h"
+#include "../res/src/font.h"
+#include "../res/src/tiles.h"
+#include "../res/src/map.h"
+#include "../res/src/window.h"
+#include "../res/src/level_complete.h"
 
 #include "ZGBMain.h"
 #include "Scroll.h"
@@ -14,12 +15,23 @@ UINT8 bank_STATE_GAME = 2;
 #include "Math.h"
 #include "Palette.h"
 #include "string.h"
+#include "Palette.h"
+#include "Keys.h"
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
 INT16 countdown;
 INT8 countdown_tick;
 extern UINT16 lifes_y[];
+
+extern struct Sprite* friendsheep_sprite;
+extern struct Sprite* player_sprite;
+UINT16 level_complete_time;
+typedef enum {
+	PLAYING,
+	LEVEL_COMPLETE,
+} GameState;
+GameState game_state;
 
 extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
@@ -58,26 +70,86 @@ void Start_STATE_GAME() {
 	countdown_tick = -1; //Force first update
 
 	lifes_y[0] = 0; //reset lifes y array
+	
+	friendsheep_sprite = 0;
+	game_state = PLAYING;
 }
 
+#define END_Y 85
+#define END_X 20
 const UINT8 pals[] = {PAL_DEF(0, 1, 2, 3), PAL_DEF(0, 0, 0, 0)};
 UINT8 current_pal;
 INT8 pal_tick;
 void Update_STATE_GAME() {
-	//Timer update
-	countdown_tick -= 1 << delta_time;
-	if(U_LESS_THAN(countdown_tick, 0)) {
-		countdown_tick += 60;
-		countdown --;
-		PRINT_POS(0, 1);
-		Printf("t: %u ", countdown);
-	}
+	struct Sprite* spr;
+	UINT8 i;
 
-	pal_tick -= 1 << delta_time;
-	if(U_LESS_THAN(pal_tick, 0)) {
-		pal_tick += 3;
+	switch(game_state) {
+		case PLAYING:
+			//Timer update
+			countdown_tick -= 1 << delta_time;
+			if(U_LESS_THAN(countdown_tick, 0)) {
+				countdown_tick += 60;
+				countdown --;
+				PRINT_POS(0, 1);
+				Printf("t: %u ", countdown);
+			}
 
-		current_pal ++;
-		OBP1_REG = pals[current_pal % 2];
+			pal_tick -= 1 << delta_time;
+			if(U_LESS_THAN(pal_tick, 0)) {
+				pal_tick += 3;
+
+				current_pal ++;
+				OBP1_REG = pals[current_pal % 2];
+			}
+
+			if(friendsheep_sprite != 0) {
+				game_state = LEVEL_COMPLETE;
+				scroll_target = 0;
+				level_complete_time = 0;
+				SPRITEMANAGER_ITERATE(i, spr) {
+					if(spr->type != SPRITE_PLAYER && spr->type != SPRITE_FRIENDSHEEP && spr->type != SPRITE_POP) {
+						SpriteManagerRemove(i);
+					}
+				}
+			}
+			break;
+
+		case LEVEL_COMPLETE:
+			level_complete_time += 1;
+
+			       if(level_complete_time ==  10) {BGP_REG = PAL_DEF(0, 0, 1, 2);
+			} else if(level_complete_time ==  20) {BGP_REG = PAL_DEF(0, 0, 0, 1);
+			} else if(level_complete_time ==  30) {BGP_REG = PAL_DEF(0, 0, 0, 0); HIDE_WIN;
+			} else if(level_complete_time ==  80) {
+				player_sprite->x = player_sprite->x - scroll_x; friendsheep_sprite->x = friendsheep_sprite->x - scroll_x;
+				player_sprite->y = player_sprite->y - scroll_y; friendsheep_sprite->y = friendsheep_sprite->y - scroll_y;
+				InitScroll(level_completeWidth, level_completeHeight, level_complete, 0, 0, 3);
+			} else if(level_complete_time ==  90) {BGP_REG = PAL_DEF(0, 0, 0, 1);
+			} else if(level_complete_time == 100) {BGP_REG = PAL_DEF(0, 0, 1, 2);
+			} else if(level_complete_time == 110) {BGP_REG = PAL_DEF(0, 1, 2, 3);
+			} else if(level_complete_time == 120) {
+				print_target = PRINT_BKG;
+				PRINT(3, 6, "LEVEL COMPLETE!");
+			} else if(level_complete_time > 130) {
+					if(previous_keys && !keys) {
+						SetState(STATE_GAME);
+					}
+			}
+			
+
+			if(player_sprite->x != scroll_x + (144 - END_X))
+				player_sprite->x += (player_sprite->x > scroll_x + (144 - END_X)) ? -1 : 1;
+
+			if(player_sprite->y != scroll_y + END_Y)
+				player_sprite->y += (player_sprite->y > scroll_y + END_Y) ? -1 : 1;
+
+			if(friendsheep_sprite->x != scroll_x + END_X)
+				friendsheep_sprite->x += (friendsheep_sprite->x > scroll_x + END_X) ? -1 : 1;
+
+			if(friendsheep_sprite->y != scroll_y + END_Y)
+				friendsheep_sprite->y += (friendsheep_sprite->y > scroll_y + END_Y) ? -1 : 1;
+
+			break;
 	}
 }

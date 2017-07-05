@@ -19,6 +19,7 @@ UINT8 anim_flying_l[] = {8, 9, 8, 7, 6, 5, 4, 3, 2};
 UINT8 anim_dancing[] = {2, 10, 11};
 
 struct Sprite* crossHair;
+struct Sprite* player_sprite;
 UINT8 sheepAngStart = 64;
 UINT8 sheepAngOffset = 0;
 UINT8 sheepAngMax = 128;
@@ -85,6 +86,8 @@ void Start_SPRITE_PLAYER() {
 	sheepAngStart = 192;
 	sheepAngOffset = 64;
 	sheepIncr = 2;
+
+	player_sprite = THIS;
 }
 
 void ChangeState(SheepState next) {
@@ -258,7 +261,7 @@ void Update_SPRITE_PLAYER() {
 				} else if(spr->type == SPRITE_BUBBLE) {
 					SpriteManagerRemove(i);
 					SpriteManagerAdd(SPRITE_POP, spr->x, spr->y);
-					SpriteManagerAdd(SPRITE_FRIENDSHEEP, spr->x, spr->y);
+					SpriteManagerAdd(SPRITE_FRIENDSHEEP, spr->x, spr->y + 8);
 					ChangeState(DANCING);
 				}
 			}
