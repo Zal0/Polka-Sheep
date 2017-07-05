@@ -7,7 +7,7 @@
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 93 x 27
+   Map size      : 108 x 27
    Tile set      : tiles.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -18,7 +18,7 @@
 
 */
 
-#define maplevelplataformaslobopajaroWidth 93
+#define maplevelplataformaslobopajaroWidth 108
 #define maplevelplataformaslobopajaroHeight 27
 #define maplevelplataformaslobopajaroBank 0
 
