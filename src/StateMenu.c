@@ -24,7 +24,9 @@ void Start_STATE_MENU() {
 
 void Update_STATE_MENU() {
 	if(previous_keys && !keys) {
+#ifdef NDEBUG
 		current_level = 0;
+#endif 
 		SetState(STATE_GAME);
 	}
 }

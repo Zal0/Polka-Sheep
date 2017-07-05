@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameParams.c" />
+    <ClCompile Include="src\Levels.c" />
     <ClCompile Include="src\SpriteBird.c" />
     <ClCompile Include="src\SpriteBubble.c" />
     <ClCompile Include="src\SpriteCrosshair.c" />

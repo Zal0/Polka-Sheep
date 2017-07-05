@@ -2,6 +2,7 @@
 #include "StateGame.h"
 UINT8 bank_STATE_GAME = 2;
 
+#include "../res/src/tiles.h"
 #include "../res/src/font.h"
 #include "../res/src/window.h"
 #include "../res/src/level_complete.h"
@@ -16,41 +17,15 @@ UINT8 bank_STATE_GAME = 2;
 #include "Palette.h"
 #include "Keys.h"
 
-#include "../res/src/tiles.h"
-#include "../res/src/maplevel1.h"
-#include "../res/src/maplevellobo.h"
-#include "../res/src/maplevelpajaro.h"
-#include "../res/src/maplevelpuzzlesencilloylobo.h"
-#include "../res/src/maplevelsubida.h"
-#include "../res/src/maplevelpinchosabajo.h"
-#include "../res/src/maplevelplataformashorizontal.h"
-#include "../res/src/maplevelplataformaslobopajaro.h"
-
-typedef struct LevelInfo {
-	UINT16 w;
-	UINT16 h;
-	UINT8* map;
-	UINT8 bank;
-};
-#define LEVEL(A, BANK) A##Width, A##Height, A, BANK
-const struct LevelInfo levels[] = {
-	{LEVEL(maplevel1,                     3)},
-	{LEVEL(maplevellobo,                  3)},
-	{LEVEL(maplevelpajaro,                3)},
-	{LEVEL(maplevelpuzzlesencilloylobo,   3)},
-	{LEVEL(maplevelsubida,                3)},
-	{LEVEL(maplevelpinchosabajo,          5)},
-	{LEVEL(maplevelplataformashorizontal, 5)},
-	{LEVEL(maplevelplataformaslobopajaro, 5)},
-};
-
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
-UINT8 current_level = 0;
+extern UINT8 current_level;
 
 INT16 countdown;
 INT8 countdown_tick;
 extern UINT16 lifes_y[];
+
+extern const struct LevelInfo levels[];
 
 extern struct Sprite* friendsheep_sprite;
 extern struct Sprite* player_sprite;
