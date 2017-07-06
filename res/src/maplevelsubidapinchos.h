@@ -7,7 +7,7 @@
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 20 x 64
+   Map size      : 20 x 67
    Tile set      : tiles.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -19,7 +19,7 @@
 */
 
 #define maplevelsubidapinchosWidth 20
-#define maplevelsubidapinchosHeight 64
+#define maplevelsubidapinchosHeight 67
 #define maplevelsubidapinchosBank 0
 
 extern unsigned char maplevelsubidapinchos[];

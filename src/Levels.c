@@ -25,11 +25,11 @@ const struct LevelInfo levels[] = {
 	{LEVEL(maplevelplataformashorizontal, 5)},
 	{LEVEL(maplevelpinchosabajo,          5)},
 	{LEVEL(maplevelplataformaslobopajaro, 5)},
+	{LEVEL(maplevelsubidapinchos,		  5)},
 	{LEVEL(maplevelsubidapajaritos,       5)},
 	{LEVEL(maplevelescondrijo,		      5)},
-	{LEVEL(maplevelsubidapinchos,		  5)},
 	{LEVEL(mapleveldospisos,		      5)},
 	{LEVEL(maplevelsubidapro,		      5)},
 };
 
-UINT8 current_level = 10;
+UINT8 current_level = 8;
