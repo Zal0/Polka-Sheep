@@ -114,7 +114,7 @@ void ChangeState(SheepState next) {
 			break;
 
 		case FLYING:
-			PlayFx(CHANNEL_1, 10, 0x46, 0x00, 0x55, 0x1f, 0x86);
+			PlayFx(CHANNEL_1, 10, 0x37, 0x80, 0xf4, 0xb7, 0x84);
 			SetSpriteAnim(THIS, speed_x > 0 ? anim_flying_r : anim_flying_l, 25);
 			last_platform = player_parent;
 			player_parent = 0;
@@ -128,7 +128,7 @@ void ChangeState(SheepState next) {
 
 void Hit() {
 	if(inmunity == 0) {
-			PlayFx(CHANNEL_4, 10, 0x0f, 0xa2, 0x52, 0x80);
+			PlayFx(CHANNEL_4, 10, 0x0f, 0xf2, 0x64, 0x80);
 			
 			current_energy--;
 			RefreshLife();
@@ -209,9 +209,9 @@ void Update_SPRITE_PLAYER() {
 				if(expected_y > THIS->y || (coll_tile > 6 && coll_tile < 18)) {
 					
 					if(expected_y > THIS->y) {
-						PlayFx(CHANNEL_1, 10, 0x2B, 0x00, 0x52, 0x1f, 0x86);
+						PlayFx(CHANNEL_1, 10, 0x1B, 0x00, 0xf1, 0x73, 0x86);
 					} else {
-						PlayFx(CHANNEL_4, 10, 0x2c, 0x35, 0x3c, 0x80);
+						PlayFx(CHANNEL_4, 10, 0x08, 0xf1, 0x3b, 0x80);
 					}
 
 					//Adjust crosshair
@@ -257,7 +257,7 @@ void Update_SPRITE_PLAYER() {
 			if(spr->type == SPRITE_BIRD || spr->type == SPRITE_WOLF) {
 				Hit();
 			} else if(spr->type == SPRITE_LIFE) {
-				PlayFx(CHANNEL_1, 10, 0x45, 0x00, 0x8f, 0x1f, 0x86);
+				PlayFx(CHANNEL_1, 10, 0x45, 0x00, 0xff, 0x1f, 0x86);
 				SpriteManagerRemove(i);
 
 				VectorAdd(lifes_y, spr->y >> 3);
@@ -267,7 +267,7 @@ void Update_SPRITE_PLAYER() {
 					RefreshLife();
 				}
 			} else if(spr->type == SPRITE_PLATFORM && last_platform != spr && sheep_state == FLYING) {
-				PlayFx(CHANNEL_4, 10, 0x2c, 0x35, 0x3c, 0x80);
+				PlayFx(CHANNEL_4, 10, 0x08, 0xf1, 0x3b, 0x80);
 				player_parent = spr;
 				ChangeState(AIMING);
 			} else if(spr->type == SPRITE_BUBBLE) {
