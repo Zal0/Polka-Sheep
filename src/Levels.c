@@ -13,6 +13,7 @@
 #include "../res/src/maplevelescondrijo.h"
 #include "../res/src/mapleveldospisos.h"
 #include "../res/src/maplevelsubidapro.h"
+#include "../res/src/maplevelsubidapinchos.h"
 
 #define LEVEL(A, BANK) A##Width, A##Height, A, BANK
 const struct LevelInfo levels[] = {
@@ -26,8 +27,9 @@ const struct LevelInfo levels[] = {
 	{LEVEL(maplevelplataformaslobopajaro, 5)},
 	{LEVEL(maplevelsubidapajaritos,       5)},
 	{LEVEL(maplevelescondrijo,		      5)},
+	{LEVEL(maplevelsubidapinchos,		  5)},
 	{LEVEL(mapleveldospisos,		      5)},
 	{LEVEL(maplevelsubidapro,		      5)},
 };
 
-UINT8 current_level = 7;
+UINT8 current_level = 10;
