@@ -62,6 +62,9 @@
     <ClInclude Include="include\StateMenu.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
+    <ClInclude Include="include\StateGameOver.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ZGBMain.c">
@@ -111,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="src\Levels.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateGameOver.c">
+      <Filter>Source Files\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

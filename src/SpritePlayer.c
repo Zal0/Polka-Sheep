@@ -129,7 +129,7 @@ void Hit() {
 			current_energy--;
 			RefreshLife();
 			if(current_energy == 0) {
-				SetState(STATE_MENU);
+				SetState(STATE_GAMEOVER);
 			} else {
 				THIS->flags = 1 << 4;
 				inmunity = inmunity_time;

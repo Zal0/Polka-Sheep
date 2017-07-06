@@ -6,6 +6,7 @@
 typedef enum {
 	STATE_GAME,
 	STATE_MENU,
+	STATE_GAMEOVER,
 
 	N_STATES
 } STATE;

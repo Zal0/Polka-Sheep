@@ -31,6 +31,7 @@
     <ClCompile Include="src\SpritePop.c" />
     <ClCompile Include="src\SpriteWolf.c" />
     <ClCompile Include="src\StateGame.c" />
+    <ClCompile Include="src\StateGameOver.c" />
     <ClCompile Include="src\StateMenu.c" />
     <ClCompile Include="src\Trig.c" />
     <ClCompile Include="src\ZGBMain.c" />
@@ -47,6 +48,7 @@
     <ClInclude Include="include\SpritePop.h" />
     <ClInclude Include="include\SpriteWolf.h" />
     <ClInclude Include="include\StateGame.h" />
+    <ClInclude Include="include\StateGameOver.h" />
     <ClInclude Include="include\StateMenu.h" />
     <ClInclude Include="include\Trig.h" />
     <ClInclude Include="include\ZGBMain.h" />
