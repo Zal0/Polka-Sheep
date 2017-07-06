@@ -37,6 +37,7 @@ typedef enum {
 GameState game_state;
 
 extern const unsigned char * const polka_level1_mod_Data[];
+extern const unsigned char * const polka_win_mod_Data[];
 
 extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
@@ -119,6 +120,7 @@ void Update_STATE_GAME() {
 						SpriteManagerRemove(i);
 					}
 				}
+				PlayMusic(polka_win_mod_Data, 4, 0);
 			}
 
 #ifndef NDEBUG
