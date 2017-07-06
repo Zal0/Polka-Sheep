@@ -1,5 +1,5 @@
-#define screen_startWidth 20
-#define screen_startHeight 18
-#define screen_startBank 0
+#define wolf_gameoverWidth 20
+#define wolf_gameoverHeight 18
+#define wolf_gameoverBank 0
 
 extern unsigned char wolf_gameover[];
