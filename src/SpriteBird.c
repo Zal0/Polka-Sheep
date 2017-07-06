@@ -6,6 +6,7 @@ UINT8 bank_SPRITE_BIRD = 2;
 #include "SpriteManager.h" 
 #include "Keys.h"
 #include "Trig.h"
+#include "Scroll.h"
 
 UINT8 anim_flying[] = {3, 0, 1, 2};
 
@@ -15,7 +16,9 @@ struct SpriteBirdData {
 
 void Start_SPRITE_BIRD() {
 	struct  SpriteBirdData* data = (struct  SpriteBirdData*) THIS->custom_data;
-	data->ang = 0;
+	data->ang = (scroll_target->x < THIS->x) ? 128 :0;
+
+	THIS->lim_x = 64;
 	SetSpriteAnim(THIS, anim_flying, 13);
 }
 
