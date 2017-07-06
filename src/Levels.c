@@ -32,4 +32,4 @@ const struct LevelInfo levels[] = {
 	{LEVEL(maplevelsubidapro,		      5)},
 };
 
-UINT8 current_level = 8;
+UINT8 current_level = 0;

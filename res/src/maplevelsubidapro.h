@@ -7,7 +7,7 @@
  Info:
    Section       : 
    Bank          : 0
-   Map size      : 20 x 79
+   Map size      : 20 x 91
    Tile set      : tiles.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
@@ -19,7 +19,7 @@
 */
 
 #define maplevelsubidaproWidth 20
-#define maplevelsubidaproHeight 79
+#define maplevelsubidaproHeight 91
 #define maplevelsubidaproBank 0
 
 extern unsigned char maplevelsubidapro[];
