@@ -12,6 +12,8 @@ UINT8 bank_STATE_GAMEEND = 2;
 #include "Scroll.h"
 #include "Print.h"
 
+UINT8 game_over_state;
+
 void Start_STATE_GAMEEND() {
 	InitScrollTiles(0, 256, ending_tileset, 4);
 	InitScroll(endingWidth, endingHeight, ending, 0, 0, 4);
@@ -19,15 +21,23 @@ void Start_STATE_GAMEEND() {
 	HIDE_WIN;
 
 	INIT_FONT(font, 3, PRINT_BKG);
-	PRINT(1, 1, "CONGRATULATIONS!!!");
 
-	PRINT(5, 12, "Thanks for");
-	PRINT(6, 13, "playing");
+	PRINT(1, 1, "CONGRATULATIONS!!!");
+	game_over_state = 0;
 }
 
 void Update_STATE_GAMEEND() {
 	if(previous_keys && !keys) {
-		SetState(STATE_MENU);
+		switch(game_over_state) {
+			case 0:
+				PRINT(9, 15, "Thanks for");
+				PRINT(12, 16, "playing");
+				break;
+
+			default:
+				SetState(STATE_MENU);
+		}
+		game_over_state ++;
 	}
 }
 
