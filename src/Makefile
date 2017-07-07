@@ -1,4 +1,4 @@
-PROJECT_NAME = ZGB_TEMPLATE
+PROJECT_NAME = PolkaSheep
 
 all: build_gb
 
