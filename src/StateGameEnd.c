@@ -13,13 +13,13 @@ UINT8 bank_STATE_GAMEEND = 2;
 #include "Print.h"
 
 void Start_STATE_GAMEEND() {
-	InitScrollTiles(0, 256, ending_tileset, 3);
-	InitScroll(endingWidth, endingHeight, ending, 0, 0, 3);
+	InitScrollTiles(0, 256, ending_tileset, 4);
+	InitScroll(endingWidth, endingHeight, ending, 0, 0, 4);
 	SHOW_BKG;
 	HIDE_WIN;
 
 	INIT_FONT(font, 3, PRINT_BKG);
-	PRINT(1, 8, "CONGRATULATIONS!!!");
+	PRINT(1, 1, "CONGRATULATIONS!!!");
 
 	PRINT(5, 12, "Thanks for");
 	PRINT(6, 13, "playing");
