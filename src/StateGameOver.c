@@ -14,13 +14,13 @@ UINT8 bank_STATE_GAMEOVER = 2;
 
 extern const unsigned char * const polka_lose_mod_Data[];
 void Start_STATE_GAMEOVER() {
-	InitScrollTiles(0, 256, wolf_gameover_tileset, 3);
-	InitScroll(wolf_gameoverWidth, wolf_gameoverHeight, wolf_gameover, 0, 0, 3);
+	InitScrollTiles(0, 256, wolf_gameover_tileset, 4);
+	InitScroll(wolf_gameoverWidth, wolf_gameoverHeight, wolf_gameover, 0, 0, 4);
 	SHOW_BKG;
 	HIDE_WIN;
 
 	INIT_FONT(font, 3, PRINT_BKG);
-	PRINT(5, 8, "GAME OVER");
+	PRINT(5, 1, "GAME OVER");
 
 	PlayMusic(polka_lose_mod_Data, 4, 0);
 }
