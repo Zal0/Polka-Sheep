@@ -20,6 +20,7 @@ UINT8 bank_STATE_GAME = 2;
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
 extern UINT8 current_level;
+extern const UINT8 num_levels;
 
 INT16 countdown;
 INT8 countdown_tick;
@@ -153,7 +154,7 @@ void Update_STATE_GAME() {
 			} else if(level_complete_time > 130) {
 					if(previous_keys && !keys) {
 						current_level ++;
-						SetState(STATE_GAME);
+						SetState(current_level == num_levels ? STATE_GAMEEND : STATE_GAME);
 					}
 			}
 			
