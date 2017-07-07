@@ -160,16 +160,16 @@ void Update_STATE_GAME() {
 			
 
 			if(player_sprite->x != scroll_x + (144 - END_X))
-				player_sprite->x += (player_sprite->x > scroll_x + (144 - END_X)) ? -1 : 1;
+				player_sprite->x += U_LESS_THAN(player_sprite->x, scroll_x + (144 - END_X)) ? 1 : -1;
 
 			if(player_sprite->y != scroll_y + END_Y)
-				player_sprite->y += (player_sprite->y > scroll_y + END_Y) ? -1 : 1;
+				player_sprite->y += U_LESS_THAN(player_sprite->y, scroll_y + END_Y) ? 1 : -1;
 
 			if(friendsheep_sprite->x != scroll_x + END_X)
-				friendsheep_sprite->x += (friendsheep_sprite->x > scroll_x + END_X) ? -1 : 1;
+				friendsheep_sprite->x += U_LESS_THAN(friendsheep_sprite->x, scroll_x + END_X) ? 1 : -1;
 
 			if(friendsheep_sprite->y != scroll_y + END_Y)
-				friendsheep_sprite->y += (friendsheep_sprite->y > scroll_y + END_Y) ? -1 : 1;
+				friendsheep_sprite->y += U_LESS_THAN(friendsheep_sprite->y, scroll_y + END_Y) ? 1 : -1;
 
 			break;
 	}
