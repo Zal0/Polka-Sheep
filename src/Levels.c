@@ -33,3 +33,4 @@ const struct LevelInfo levels[] = {
 };
 
 UINT8 current_level = 0;
+const UINT8 num_levels = 13;
