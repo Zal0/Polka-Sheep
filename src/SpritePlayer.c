@@ -176,26 +176,26 @@ void Update_SPRITE_PLAYER() {
 
 #ifndef NDEBUG
 			if(KEY_PRESSED(J_LEFT)) {
-				TranslateSprite(THIS, -1, 0);
+				TranslateSprite(THIS, -1 << delta_time, 0);
 			}
 			if(KEY_PRESSED(J_RIGHT)) {
-				TranslateSprite(THIS, 1, 0);
+				TranslateSprite(THIS, 1 << delta_time, 0);
 			}
 			if(KEY_PRESSED(J_UP)) {
-				TranslateSprite(THIS, 0, -1);
+				TranslateSprite(THIS, 0, -1 << delta_time);
 			}
 			if(KEY_PRESSED(J_DOWN)) {
-				TranslateSprite(THIS, 0, 1);
+				TranslateSprite(THIS, 0, 1 << delta_time);
 			}
 #endif
 			break;
 
 		case FLYING:
-			accum_x.w += speed_x;
-			accum_y.w += speed_y;
+			accum_x.w += speed_x << delta_time;
+			accum_y.w += speed_y << delta_time;
 			
 			if(speed_y < 1024) {
-				speed_y += gravity;
+				speed_y += gravity << delta_time;
 			}
 			
 			expected_x = (THIS->x + (INT8)accum_x.b.h);
