@@ -42,14 +42,14 @@ void Update_SPRITE_WOLF() {
 		if(data->wolf_x_accum.b.h != 0) {
 			if(THIS->flags & OAM_VERTICAL_FLAG) {
 				//moving left
-				if(TranslateSprite(THIS, -data->wolf_x_accum.b.h, 0)) {
+				if(TranslateSprite(THIS, -data->wolf_x_accum.b.h << delta_time, 0)) {
 					THIS->flags = 0u;
 				} else	if(!scroll_collisions[GetScrollTile(((THIS->x + THIS->coll_x) >> 3), (THIS->y >> 3) + 2u)]) {
 					THIS->flags = 0u;
 				}
 			} else {
 				//moving right
-				if(TranslateSprite(THIS, data->wolf_x_accum.b.h, 0)) {
+				if(TranslateSprite(THIS, data->wolf_x_accum.b.h << delta_time, 0)) {
 					THIS->flags |= OAM_VERTICAL_FLAG;
 				} else if(!scroll_collisions[GetScrollTile(((THIS->x + THIS->coll_x + THIS->coll_w) >> 3), (THIS->y >> 3) + 2u)]) {
 					THIS->flags |= OAM_VERTICAL_FLAG;
