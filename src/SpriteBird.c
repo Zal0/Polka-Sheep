@@ -31,9 +31,9 @@ void Update_SPRITE_BIRD() {
 	THIS->x += (INT8)(SIN(data->ang) >> 2);
 
 	if(THIS->x > prev_x) {
-		THIS->flags = 0;
+		SPRITE_UNSET_VMIRROR(THIS);
 	} else if(THIS->x != prev_x) {
-		THIS->flags = OAM_VERTICAL_FLAG;
+		SPRITE_SET_VMIRROR(THIS);
 	}
 }
 

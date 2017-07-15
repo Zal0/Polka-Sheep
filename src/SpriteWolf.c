@@ -40,19 +40,19 @@ void Update_SPRITE_WOLF() {
 	} else {
 		data->wolf_x_accum.w += 150 << delta_time;
 		if(data->wolf_x_accum.b.h != 0) {
-			if(THIS->flags & OAM_VERTICAL_FLAG) {
+			if(SPRITE_GET_VMIRROR(THIS)) {
 				//moving left
 				if(TranslateSprite(THIS, -data->wolf_x_accum.b.h, 0)) {
-					THIS->flags = 0u;
+					SPRITE_UNSET_VMIRROR(THIS);
 				} else	if(!scroll_collisions[GetScrollTile(((THIS->x + THIS->coll_x) >> 3), (THIS->y >> 3) + 2u)]) {
-					THIS->flags = 0u;
+					SPRITE_UNSET_VMIRROR(THIS);
 				}
 			} else {
 				//moving right
 				if(TranslateSprite(THIS, data->wolf_x_accum.b.h, 0)) {
-					THIS->flags |= OAM_VERTICAL_FLAG;
+					SPRITE_SET_VMIRROR(THIS);
 				} else if(!scroll_collisions[GetScrollTile(((THIS->x + THIS->coll_x + THIS->coll_w) >> 3), (THIS->y >> 3) + 2u)]) {
-					THIS->flags |= OAM_VERTICAL_FLAG;
+					SPRITE_SET_VMIRROR(THIS);
 				}
 			}
 			data->wolf_x_accum.b.h = 0;
