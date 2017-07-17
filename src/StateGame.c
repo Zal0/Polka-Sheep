@@ -97,6 +97,35 @@ const UINT16 pal_off[] = {RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31), RGB
 const UINT16* pals_color[] = {pal_on, pal_off};
 #endif
 
+UWORD UpdateColorGame(UINT8 i, UWORD col) {
+	return RGB2(PAL_RED(col) | DespRight(0x1F, 5 - i), PAL_GREEN(col) | DespRight(0x1F, 5 - i), PAL_BLUE(col) | DespRight(0x1F, 5 - i));
+}
+
+extern UWORD ZGB_Fading_BPal[32];
+extern UWORD ZGB_Fading_SPal[32];
+void FadeStepColorGame(UINT8 i) {
+	UINT8 pal, c;
+	UWORD palette[4];
+	UWORD* col = ZGB_Fading_BPal;
+
+	for(pal = 0; pal < 8; pal ++) {
+		for(c = 0; c < 4; ++c, ++col) {
+				palette[c] = UpdateColorGame(i, *col);
+		};
+		set_bkg_palette(pal, 1, palette);
+	}
+	delay(20);
+}
+
+void SetGBFade(UINT8 i) {
+#ifdef CGB
+	if(_cpu == CGB_TYPE) {
+		FadeStepColorGame((i << 1) < 5 ? i << 1 : 5);
+	} else
+#endif
+		BGP_REG = PAL_DEF(0, 1, 2, 3) << (i << 1);
+}
+
 UINT8 current_pal;
 INT8 pal_tick;
 void Update_STATE_GAME() {
@@ -151,16 +180,16 @@ void Update_STATE_GAME() {
 		case LEVEL_COMPLETE:
 			level_complete_time += 1;
 
-			       if(level_complete_time ==  10) {BGP_REG = PAL_DEF(0, 0, 1, 2);
-			} else if(level_complete_time ==  20) {BGP_REG = PAL_DEF(0, 0, 0, 1);
-			} else if(level_complete_time ==  30) {BGP_REG = PAL_DEF(0, 0, 0, 0); HIDE_WIN;
+			       if(level_complete_time ==  10) {SetGBFade(1);
+			} else if(level_complete_time ==  20) {SetGBFade(2);
+			} else if(level_complete_time ==  30) {SetGBFade(3); HIDE_WIN;
 			} else if(level_complete_time ==  80) {
 				player_sprite->x = player_sprite->x - scroll_x; friendsheep_sprite->x = friendsheep_sprite->x - scroll_x;
 				player_sprite->y = player_sprite->y - scroll_y; friendsheep_sprite->y = friendsheep_sprite->y - scroll_y;
 				InitScroll(level_completeWidth, level_completeHeight, level_complete, 0, 0, 3);
-			} else if(level_complete_time ==  90) {BGP_REG = PAL_DEF(0, 0, 0, 1);
-			} else if(level_complete_time == 100) {BGP_REG = PAL_DEF(0, 0, 1, 2);
-			} else if(level_complete_time == 110) {BGP_REG = PAL_DEF(0, 1, 2, 3);
+			} else if(level_complete_time ==  90) {SetGBFade(2);
+			} else if(level_complete_time == 100) {SetGBFade(1);
+			} else if(level_complete_time == 110) {SetGBFade(0);
 			} else if(level_complete_time == 120) {
 				print_target = PRINT_BKG;
 				PRINT(3, 6, "LEVEL COMPLETE!");
