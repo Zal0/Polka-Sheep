@@ -135,7 +135,7 @@ void Hit() {
 			if(current_energy == 0) {
 				SetState(STATE_GAMEOVER);
 			} else {
-				THIS->flags = 1 << 4;
+				SPRITE_SET_PALETTE(THIS, 1);
 				inmunity = inmunity_time;
 			}
 	}
@@ -283,7 +283,7 @@ void Update_SPRITE_PLAYER() {
 		inmunity -= (1 << delta_time);
 		if(inmunity < 1) {
 			inmunity = 0;
-			THIS->flags = 0;
+			SPRITE_SET_PALETTE(THIS, 0);
 
 			if(sheep_state == AIMING && sheepAngStart == 192) {
 				if(TranslateSprite(THIS, 0, 1) == 18) {

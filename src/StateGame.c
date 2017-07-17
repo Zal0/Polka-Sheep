@@ -90,6 +90,13 @@ void Start_STATE_GAME() {
 #define END_Y 85
 #define END_X 20
 const UINT8 pals[] = {PAL_DEF(0, 1, 2, 3), PAL_DEF(0, 0, 0, 0)};
+
+#ifdef CGB
+const UINT16 pal_on[]  = {RGB(31, 31, 31), RGB(20, 20, 20), RGB(10, 10, 10), RGB(0,   0,  0)};
+const UINT16 pal_off[] = {RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31)};
+const UINT16* pals_color[] = {pal_on, pal_off};
+#endif
+
 UINT8 current_pal;
 INT8 pal_tick;
 void Update_STATE_GAME() {
@@ -112,7 +119,13 @@ void Update_STATE_GAME() {
 				pal_tick += 3;
 
 				current_pal ++;
-				OBP1_REG = pals[current_pal % 2];
+
+#ifdef CGB
+				if(_cpu == CGB_TYPE) {
+					SetPalette(SPRITES_PALETTE, 1, 1, pals_color[current_pal % 2], 2);
+				} else
+#endif
+					OBP1_REG = pals[current_pal % 2];
 			}
 
 			if(friendsheep_sprite != 0) {
