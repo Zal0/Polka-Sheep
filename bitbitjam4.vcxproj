@@ -36,22 +36,9 @@
     <ClCompile Include="src\StateMenu.c" />
     <ClCompile Include="src\Trig.c" />
     <ClCompile Include="src\ZGBMain.c" />
-    <ClCompile Include="src\ZGBMain_Init.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\SpriteBird.h" />
-    <ClInclude Include="include\SpriteBubble.h" />
-    <ClInclude Include="include\SpriteCrosshair.h" />
-    <ClInclude Include="include\SpriteFriendSheep.h" />
-    <ClInclude Include="include\SpriteLife.h" />
-    <ClInclude Include="include\SpritePlatform.h" />
-    <ClInclude Include="include\SpritePlayer.h" />
-    <ClInclude Include="include\SpritePop.h" />
-    <ClInclude Include="include\SpriteWolf.h" />
-    <ClInclude Include="include\StateGame.h" />
-    <ClInclude Include="include\StateGameEnd.h" />
-    <ClInclude Include="include\StateGameOver.h" />
-    <ClInclude Include="include\StateMenu.h" />
+    <ClInclude Include="include\Levels.h" />
     <ClInclude Include="include\Trig.h" />
     <ClInclude Include="include\ZGBMain.h" />
   </ItemGroup>

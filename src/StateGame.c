@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "StateGame.h"
+#include "main.h"
 UINT8 bank_STATE_GAME = 2;
 
 #include "../res/src/tiles.h"
@@ -16,6 +16,7 @@ UINT8 bank_STATE_GAME = 2;
 #include "string.h"
 #include "Palette.h"
 #include "Keys.h"
+#include "Levels.h"
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
@@ -40,14 +41,13 @@ GameState game_state;
 extern const unsigned char * const polka_level1_mod_Data[];
 extern const unsigned char * const polka_win_mod_Data[];
 
-extern UINT8 n_sprite_types;
 void Start_STATE_GAME() {
 	UINT8 i;
 	UINT16 start_x, start_y;
 	const struct LevelInfo* level = &levels[current_level];
 
 	SPRITES_8x16;
-	for(i = 0; i != n_sprite_types; ++ i) {
+	for(i = 0; i != N_SPRITE_TYPES; ++ i) {
 		SpriteManagerLoad(i);
 	}
 	SHOW_SPRITES;

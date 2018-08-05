@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "SpriteBubble.h"
+#include "main.h"
 UINT8 bank_SPRITE_BUBBLE = 2;
 
 #include "SpriteManager.h"

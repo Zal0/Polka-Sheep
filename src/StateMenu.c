@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "StateMenu.h"
+#include "main.h"
 UINT8 bank_STATE_MENU = 2;
 
 #include <gb/gb.h>

@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "StateGameEnd.h"
+#include "main.h"
 UINT8 bank_STATE_GAMEEND = 2;
 
 #include "ZGBMain.h"

@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "SpriteBird.h"
+#include "main.h"
 UINT8 bank_SPRITE_BIRD = 2;
 
 #include "ZGBMain.h"

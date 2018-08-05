@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "SpriteFRIENDSHEEP.h"
+#include "main.h"
 UINT8 bank_SPRITE_FRIENDSHEEP = 2;
 
 #include "SpriteManager.h"

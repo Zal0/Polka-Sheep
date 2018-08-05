@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "StateGame.h"
+#include "Levels.h"
 
 #include "../res/src/maplevel1.h"
 #include "../res/src/maplevellobo.h"

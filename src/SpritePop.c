@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "SpritePOP.h"
+#include "main.h"
 UINT8 bank_SPRITE_POP = 2;
 
 #include "SpriteManager.h"

@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "SpriteWolf.h"
+#include "main.h"
 UINT8 bank_SPRITE_WOLF = 2;
 
 #include "../res/src/Wolf.h"

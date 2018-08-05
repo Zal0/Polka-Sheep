@@ -1,5 +1,5 @@
 #pragma bank 2
-#include "SpriteLife.h"
+#include "main.h"
 UINT8 bank_SPRITE_LIFE = 2;
 
 #include "SpriteManager.h"
