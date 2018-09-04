@@ -1,0 +1,8 @@
+#ifndef SPRITE_FRIENDSHEEP_H
+#define SPRITE_FRIENDSHEEP_H
+
+#include "main.h"
+
+DECLARE_SPRITE(SPRITE_FRIENDSHEEP);
+
+#endif

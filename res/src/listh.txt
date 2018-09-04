@@ -1,0 +1,41 @@
+ El volumen de la unidad C no tiene etiqueta.
+ El n£mero de serie del volumen es: 182E-DEEA
+
+ Directorio de C:\Users\Sergio\Desktop\bitbitjam4\res\src
+
+07/07/2017  00:26               570 bird.h
+04/07/2017  21:28               578 bubble.h
+01/07/2017  17:15               593 crossair.h
+07/07/2017  21:39               103 ending.h
+07/07/2017  21:39                96 ending_tileset.h
+07/07/2017  00:42               569 font.h
+09/07/2017  15:42               598 friendsheep.h
+05/07/2017  18:35               499 level_complete.h
+03/07/2017  21:44               569 life.h
+05/07/2017  23:41               469 maplevel1.h
+06/07/2017  01:44               511 mapleveldospisos.h
+06/07/2017  00:47               523 maplevelescondrijo.h
+05/07/2017  23:41               487 maplevellobo.h
+05/07/2017  23:41               499 maplevelpajaro.h
+05/07/2017  23:41               535 maplevelpinchosabajo.h
+05/07/2017  23:41               589 maplevelplataformashorizontal.h
+07/07/2017  00:07               591 maplevelplataformaslobopajaro.h
+05/07/2017  23:41               577 maplevelpuzzlesencilloylobo.h
+05/07/2017  23:41               499 maplevelsubida.h
+05/07/2017  23:41               553 maplevelsubidapajaritos.h
+07/07/2017  21:39               541 maplevelsubidapinchos.h
+07/07/2017  21:39               517 maplevelsubidapro.h
+03/07/2017  21:44               586 platform.h
+06/07/2017  19:35               579 player.h
+02/07/2017  17:56               586 polkaman.h
+04/07/2017  21:28               566 pop.h
+02/07/2017  21:58               127 screen_start.h
+02/07/2017  21:52               108 screen_start_tileset.h
+03/07/2017  21:44               581 tiles.h
+01/07/2017  20:54               449 window.h
+01/07/2017  20:34               593 windowfont.h
+07/07/2017  00:26               570 wolf.h
+07/07/2017  21:39               131 wolf_gameover.h
+06/07/2017  21:10               110 wolf_gameover_tileset.h
+              34 archivos         16.052 bytes
+               0 dirs  71.889.227.776 bytes libres
