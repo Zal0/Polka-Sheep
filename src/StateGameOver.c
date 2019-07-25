@@ -5,8 +5,8 @@ UINT8 bank_STATE_GAMEOVER = 2;
 #include "ZGBMain.h"
 #include "Keys.h"
 
-#include "../res/src/wolf_gameover.h"
-#include "../res/src/wolf_gameover_tileset.h"
+#include "wolf_gameover.h"
+#include "wolf_gameover_tileset.h"
 #include "../res/src/font.h"
 
 #include "Scroll.h"
@@ -14,12 +14,12 @@ UINT8 bank_STATE_GAMEOVER = 2;
 
 extern const unsigned char * const polka_lose_mod_Data[];
 void Start_STATE_GAMEOVER() {
-	InitScrollTiles(0, 256, wolf_gameover_tileset, 4);
+	InitScrollTilesLEGACY(0, 256, wolf_gameover_tileset, 4);
 	InitScroll(wolf_gameoverWidth, wolf_gameoverHeight, wolf_gameover, 0, 0, 4);
 	SHOW_BKG;
 	HIDE_WIN;
 
-	INIT_FONT(font, 3, PRINT_BKG);
+	INIT_FONT(font, PRINT_BKG);
 	PRINT(5, 1, "GAME OVER");
 
 	PlayMusic(polka_lose_mod_Data, 4, 0);

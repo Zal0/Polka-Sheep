@@ -56,7 +56,7 @@ void Start_STATE_GAME() {
 	print_x = 0;\
 	print_y = 0;\
 	font_idx = 255 - 45;\
-	InitScrollTiles(255 - 45, 45, font, 3);\
+	InitScrollTiles(255 - 45, &font, bank_font);\
 	WX_REG = 7;\
   WY_REG = (144 - (2 << 3));\
 	scroll_h_border = 2 << 3;\
@@ -69,7 +69,7 @@ void Start_STATE_GAME() {
 	ScrollFindTile(level->w, level->map, level->bank, 4, 0, 0, level->w, level->h, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
 
-	InitScrollTiles(0, 128, tiles, 3);
+	InitScrollTiles(0, &tiles, bank_tiles);
 	InitScroll(level->w, level->h, level->map, collisions, 0, level->bank);
 	SHOW_BKG;
 

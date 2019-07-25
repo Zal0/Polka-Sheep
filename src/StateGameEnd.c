@@ -5,8 +5,8 @@ UINT8 bank_STATE_GAMEEND = 2;
 #include "ZGBMain.h"
 #include "Keys.h"
 
-#include "../res/src/ending.h"
-#include "../res/src/ending_tileset.h"
+#include "ending.h"
+#include "ending_tileset.h"
 #include "../res/src/font.h"
 
 #include "Scroll.h"
@@ -15,12 +15,12 @@ UINT8 bank_STATE_GAMEEND = 2;
 UINT8 game_over_state;
 
 void Start_STATE_GAMEEND() {
-	InitScrollTiles(0, 256, ending_tileset, 4);
+	InitScrollTilesLEGACY(0, 256, ending_tileset, 4);
 	InitScroll(endingWidth, endingHeight, ending, 0, 0, 4);
 	SHOW_BKG;
 	HIDE_WIN;
 
-	INIT_FONT(font, 3, PRINT_BKG);
+	INIT_FONT(font, PRINT_BKG);
 
 	PRINT(1, 1, "CONGRATULATIONS!!!");
 	game_over_state = 0;
