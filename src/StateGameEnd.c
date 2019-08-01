@@ -16,7 +16,7 @@ UINT8 game_over_state;
 
 void Start_STATE_GAMEEND() {
 	InitScrollTilesLEGACY(0, 256, ending_tileset, 4);
-	InitScroll(endingWidth, endingHeight, ending, 0, 0, 4);
+	InitScrollLEGACY(endingWidth, endingHeight, ending, 0, 0, 4, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 

@@ -51,26 +51,23 @@ void Start_STATE_GAME() {
 		SpriteManagerLoad(i);
 	}
 	SHOW_SPRITES;
-
-	print_target = PRINT_WIN;\
-	print_x = 0;\
-	print_y = 0;\
-	font_idx = 255 - 45;\
-	InitScrollTiles(255 - 45, &font, bank_font);\
-	WX_REG = 7;\
-  WY_REG = (144 - (2 << 3));\
-	scroll_h_border = 2 << 3;\
+	
+	INIT_FONT(font, PRINT_WIN);
+	WX_REG = 7;
+	WY_REG = (144 - (2 << 3));
+	scroll_h_border = 2 << 3;
+	InitWindow(0, 0, &window);
 	SHOW_WIN;
-	InitWindow(0, 0, 20, 3, window, 3, 0);
-	DPRINT(6, 0, " DEBUG ");
 	PRINT_POS(0, 1);
 	Printf("Level %d", (UINT16)(current_level + 1));
+
+	DPRINT(6, 0, " DEBUG ");
 	
-	ScrollFindTile(level->w, level->map, level->bank, 4, 0, 0, level->w, level->h, &start_x, &start_y);
+	ScrollFindTile(level->map, 4, 0, 0, level->w, level->h, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
 
-	InitScrollTiles(0, &tiles, bank_tiles);
-	InitScroll(level->w, level->h, level->map, collisions, 0, level->bank);
+	InitScrollTiles(0, &tiles);
+	InitScroll(level->map, collisions, 0);
 	SHOW_BKG;
 
 	countdown = 1024;
@@ -186,7 +183,7 @@ void Update_STATE_GAME() {
 			} else if(level_complete_time ==  80) {
 				player_sprite->x = player_sprite->x - scroll_x; friendsheep_sprite->x = friendsheep_sprite->x - scroll_x;
 				player_sprite->y = player_sprite->y - scroll_y; friendsheep_sprite->y = friendsheep_sprite->y - scroll_y;
-				InitScroll(level_completeWidth, level_completeHeight, level_complete, 0, 0, 3);
+				InitScroll(&level_complete, 0, 0);
 			} else if(level_complete_time ==  90) {SetGBFade(2);
 			} else if(level_complete_time == 100) {SetGBFade(1);
 			} else if(level_complete_time == 110) {SetGBFade(0);

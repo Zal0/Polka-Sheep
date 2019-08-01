@@ -14,7 +14,7 @@ extern const unsigned char * const polka_start_mod_Data[];
 extern UINT8 current_level;
 void Start_STATE_MENU() {
 	InitScrollTilesLEGACY(0, 256, screen_start_tileset, 3);
-	InitScroll(screen_startWidth, screen_startHeight, screen_start, 0, 0, 3);
+	InitScrollLEGACY(screen_startWidth, screen_startHeight, screen_start, 0, 0, 3, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 

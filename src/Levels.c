@@ -15,21 +15,21 @@
 #include "../res/src/maplevelsubidapro.h"
 #include "../res/src/maplevelsubidapinchos.h"
 
-#define LEVEL(A, BANK) A##Width, A##Height, A, BANK
+#define LEVEL(A) A##Width, A##Height, &A
 const struct LevelInfo levels[] = {
-	{LEVEL(maplevel1,                     3)},
-	{LEVEL(maplevellobo,                  3)},
-	{LEVEL(maplevelpuzzlesencilloylobo,   3)},
-	{LEVEL(maplevelpajaro,                3)},
-	{LEVEL(maplevelsubida,                3)},
-	{LEVEL(maplevelplataformashorizontal, 5)},
-	{LEVEL(maplevelpinchosabajo,          5)},
-	{LEVEL(maplevelplataformaslobopajaro, 5)},
-	{LEVEL(maplevelsubidapinchos,		  5)},
-	{LEVEL(maplevelsubidapajaritos,       5)},
-	{LEVEL(maplevelescondrijo,		      5)},
-	{LEVEL(mapleveldospisos,		      5)},
-	{LEVEL(maplevelsubidapro,		      5)},
+	{LEVEL(maplevel1)},
+	{LEVEL(maplevellobo)},
+	{LEVEL(maplevelpuzzlesencilloylobo)},
+	{LEVEL(maplevelpajaro)},
+	{LEVEL(maplevelsubida)},
+	{LEVEL(maplevelplataformashorizontal)},
+	{LEVEL(maplevelpinchosabajo)},
+	{LEVEL(maplevelplataformaslobopajaro)},
+	{LEVEL(maplevelsubidapinchos)},
+	{LEVEL(maplevelsubidapajaritos)},
+	{LEVEL(maplevelescondrijo)},
+	{LEVEL(mapleveldospisos)},
+	{LEVEL(maplevelsubidapro)},
 };
 
 UINT8 current_level = 0;

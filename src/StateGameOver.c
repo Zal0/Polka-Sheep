@@ -15,7 +15,7 @@ UINT8 bank_STATE_GAMEOVER = 2;
 extern const unsigned char * const polka_lose_mod_Data[];
 void Start_STATE_GAMEOVER() {
 	InitScrollTilesLEGACY(0, 256, wolf_gameover_tileset, 4);
-	InitScroll(wolf_gameoverWidth, wolf_gameoverHeight, wolf_gameover, 0, 0, 4);
+	InitScrollLEGACY(wolf_gameoverWidth, wolf_gameoverHeight, wolf_gameover, 0, 0, 4, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 
