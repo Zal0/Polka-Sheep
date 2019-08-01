@@ -5,18 +5,19 @@ UINT8 bank_STATE_GAMEEND = 2;
 #include "ZGBMain.h"
 #include "Keys.h"
 
-#include "ending.h"
-#include "ending_tileset.h"
 #include "../res/src/font.h"
 
 #include "Scroll.h"
 #include "Print.h"
 
+extern struct TilesInfo ending_tiles;
+extern struct MapInfo ending;
+
 UINT8 game_over_state;
 
 void Start_STATE_GAMEEND() {
-	InitScrollTilesLEGACY(0, 256, ending_tileset, 4);
-	InitScrollLEGACY(endingWidth, endingHeight, ending, 0, 0, 4, 0);
+	InitScrollTiles(0, &ending_tiles);
+	InitScroll(&ending, 0, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 

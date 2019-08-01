@@ -5,17 +5,18 @@ UINT8 bank_STATE_GAMEOVER = 2;
 #include "ZGBMain.h"
 #include "Keys.h"
 
-#include "wolf_gameover.h"
-#include "wolf_gameover_tileset.h"
 #include "../res/src/font.h"
 
 #include "Scroll.h"
 #include "Print.h"
 
+extern struct TilesInfo wolf_gameover_tiles;
+extern struct MapInfo wolf_gameover;
+
 extern const unsigned char * const polka_lose_mod_Data[];
 void Start_STATE_GAMEOVER() {
-	InitScrollTilesLEGACY(0, 256, wolf_gameover_tileset, 4);
-	InitScrollLEGACY(wolf_gameoverWidth, wolf_gameoverHeight, wolf_gameover, 0, 0, 4, 0);
+	InitScrollTiles(0, &wolf_gameover_tiles);
+	InitScroll(&wolf_gameover, 0, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 
