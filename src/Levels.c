@@ -1,5 +1,6 @@
 #pragma bank 2
-#include "Levels.h"
+#include <gb/gb.h>
+#include "MapInfo.h"
 
 #include "../res/src/maplevel1.h"
 #include "../res/src/maplevellobo.h"
@@ -15,21 +16,20 @@
 #include "../res/src/maplevelsubidapro.h"
 #include "../res/src/maplevelsubidapinchos.h"
 
-#define LEVEL(A) A##Width, A##Height, &A
-const struct LevelInfo levels[] = {
-	{LEVEL(maplevel1)},
-	{LEVEL(maplevellobo)},
-	{LEVEL(maplevelpuzzlesencilloylobo)},
-	{LEVEL(maplevelpajaro)},
-	{LEVEL(maplevelsubida)},
-	{LEVEL(maplevelplataformashorizontal)},
-	{LEVEL(maplevelpinchosabajo)},
-	{LEVEL(maplevelplataformaslobopajaro)},
-	{LEVEL(maplevelsubidapinchos)},
-	{LEVEL(maplevelsubidapajaritos)},
-	{LEVEL(maplevelescondrijo)},
-	{LEVEL(mapleveldospisos)},
-	{LEVEL(maplevelsubidapro)},
+const struct MapInfo* levels[] = {
+	&maplevel1,
+	&maplevellobo,
+	&maplevelpuzzlesencilloylobo,
+	&maplevelpajaro,
+	&maplevelsubida,
+	&maplevelplataformashorizontal,
+	&maplevelpinchosabajo,
+	&maplevelplataformaslobopajaro,
+	&maplevelsubidapinchos,
+	&maplevelsubidapajaritos,
+	&maplevelescondrijo,
+	&mapleveldospisos,
+	&maplevelsubidapro,
 };
 
 UINT8 current_level = 0;

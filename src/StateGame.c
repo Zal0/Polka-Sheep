@@ -16,7 +16,6 @@ UINT8 bank_STATE_GAME = 2;
 #include "string.h"
 #include "Palette.h"
 #include "Keys.h"
-#include "Levels.h"
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
@@ -27,7 +26,7 @@ INT16 countdown;
 INT8 countdown_tick;
 extern UINT16 lifes_y[];
 
-extern const struct LevelInfo levels[];
+extern const struct MapInfo* levels[];
 
 extern struct Sprite* friendsheep_sprite;
 extern struct Sprite* player_sprite;
@@ -44,7 +43,7 @@ extern const unsigned char * const polka_win_mod_Data[];
 void Start_STATE_GAME() {
 	UINT8 i;
 	UINT16 start_x, start_y;
-	const struct LevelInfo* level = &levels[current_level];
+	const struct MapInfo* level = levels[current_level];
 
 	SPRITES_8x16;
 	for(i = 0; i != N_SPRITE_TYPES; ++ i) {
@@ -63,11 +62,11 @@ void Start_STATE_GAME() {
 
 	DPRINT(6, 0, " DEBUG ");
 	
-	ScrollFindTile(level->map, 4, 0, 0, level->w, level->h, &start_x, &start_y);
+	ScrollFindTile(level, 4, 0, 0, level->width, level->height, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
 
 	InitScrollTiles(0, &tiles);
-	InitScroll(level->map, collisions, 0);
+	InitScroll(level, collisions, 0);
 	SHOW_BKG;
 
 	countdown = 1024;
