@@ -141,6 +141,9 @@ void Hit() {
 	}
 }
 
+//Wolf anim laughing
+extern UINT8 anim_laughing[];
+
 void Update_SPRITE_PLAYER() {
 	UINT16 expected_x;
 	UINT16 expected_y;
@@ -253,9 +256,16 @@ void Update_SPRITE_PLAYER() {
 	}
 
 	SPRITEMANAGER_ITERATE(i, spr) {
+		if(i == THIS_IDX || spr->type == SPRITE_CROSSHAIR)
+			continue;
+
 		if(CheckCollision(THIS, spr)) {
-			if(spr->type == SPRITE_BIRD || spr->type == SPRITE_WOLF) {
+			if(spr->type == SPRITE_BIRD) {
 				Hit();
+			} else if(spr->type == SPRITE_WOLF) {
+				Hit();
+				spr->custom_data[0] = 100; //Laughing See SpriteWolf.c
+				spr->anim_data = anim_laughing;
 			} else if(spr->type == SPRITE_LIFE) {
 				PlayFx(CHANNEL_1, 10, 0x45, 0x00, 0xff, 0x1f, 0x86);
 				SpriteManagerRemove(i);

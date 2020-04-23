@@ -58,10 +58,11 @@ void Update_SPRITE_WOLF() {
 			data->wolf_x_accum.b.h = 0;
 		}
 
-		if(CheckCollision(THIS, scroll_target)) {
-			data->laughing = 100;
-			SetSpriteAnim(THIS, anim_laughing, 10);
-		}
+		//Moved to SpritePlayer to improve performance
+		//if(CheckCollision(THIS, scroll_target)) {
+		//	data->laughing = 100;
+		//	SetSpriteAnim(THIS, anim_laughing, 10);
+		//}
 	}
 }
 
