@@ -11,7 +11,7 @@ void Start_SPRITE_POP() {
 }
 
 void Update_SPRITE_POP() {
-	if(THIS->current_frame == 2) {
+	if(THIS->anim_frame == 2) {
 		SpriteManagerRemove(THIS_IDX);
 	}
 }
