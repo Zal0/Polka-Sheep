@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_BIRD = 2;
 
 #include "ZGBMain.h"
 #include "SpriteManager.h" 
@@ -14,7 +13,7 @@ struct SpriteBirdData {
 	INT8 ang;
 };
 
-void Start_SPRITE_BIRD() {
+void Start_SpriteBird() {
 	struct  SpriteBirdData* data = (struct  SpriteBirdData*) THIS->custom_data;
 	data->ang = (scroll_target->x < THIS->x) ? 128 :0;
 
@@ -22,7 +21,7 @@ void Start_SPRITE_BIRD() {
 	SetSpriteAnim(THIS, anim_flying, 13);
 }
 
-void Update_SPRITE_BIRD() {
+void Update_SpriteBird() {
 	struct  SpriteBirdData* data = (struct  SpriteBirdData*) THIS->custom_data;
 	INT16 prev_x = THIS->x;
 	
@@ -37,5 +36,5 @@ void Update_SPRITE_BIRD() {
 	}
 }
 
-void Destroy_SPRITE_BIRD() {
+void Destroy_SpriteBird() {
 }

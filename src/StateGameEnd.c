@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_STATE_GAMEEND = 2;
 
 #include "ZGBMain.h"
 #include "Keys.h"
@@ -15,7 +14,7 @@ extern struct MapInfo ending;
 
 UINT8 game_over_state;
 
-void Start_STATE_GAMEEND() {
+void Start_StateGameEnd() {
 	InitScrollTiles(0, &ending_tiles);
 	InitScroll(&ending, 0, 0);
 	SHOW_BKG;
@@ -27,7 +26,7 @@ void Start_STATE_GAMEEND() {
 	game_over_state = 0;
 }
 
-void Update_STATE_GAMEEND() {
+void Update_StateGameEnd() {
 	if(previous_keys && !keys) {
 		switch(game_over_state) {
 			case 0:
@@ -36,7 +35,7 @@ void Update_STATE_GAMEEND() {
 				break;
 
 			default:
-				SetState(STATE_MENU);
+				SetState(StateMenu);
 		}
 		game_over_state ++;
 	}

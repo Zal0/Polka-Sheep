@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_WOLF = 2;
 
 #include "../res/src/Wolf.h"
 #include "SpriteManager.h"
@@ -16,7 +15,7 @@ struct SpriteWolfData {
 	fixed wolf_x_accum;
 };
 
-void Start_SPRITE_WOLF() {
+void Start_SpriteWolf() {
 	struct SpriteWolfData* data = (struct SpriteWolfData*)THIS->custom_data;
 	data->laughing = 0;
 	data->wolf_x_accum.w = 0;
@@ -29,7 +28,7 @@ void Start_SPRITE_WOLF() {
 	THIS->lim_y = 160u;
 }
 
-void Update_SPRITE_WOLF() {
+void Update_SpriteWolf() {
 	struct SpriteWolfData* data = (struct SpriteWolfData*)THIS->custom_data;
 	if(data->laughing) {
 		data->laughing -= 1 << delta_time;
@@ -66,5 +65,5 @@ void Update_SPRITE_WOLF() {
 	}
 }
 
-void Destroy_SPRITE_WOLF() {
+void Destroy_SpriteWolf() {
 }

@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_LIFE = 2;
 
 #include "SpriteManager.h"
 #include "Vector.h"
@@ -9,7 +8,7 @@ DECLARE_VECTOR(lifes_y, 5);
 
 UINT8 anim_idle_life[] = {4, 0, 0, 0, 1};
 
-void Start_SPRITE_LIFE() {
+void Start_SpriteLife() {
 	UINT8 i;
 	UINT8 elem;
 
@@ -24,8 +23,8 @@ void Start_SPRITE_LIFE() {
 	SetSpriteAnim(THIS, anim_idle_life, 10);
 }
 
-void Update_SPRITE_LIFE() {
+void Update_SpriteLife() {
 }
 
-void Destroy_SPRITE_LIFE() {
+void Destroy_SpriteLife() {
 }

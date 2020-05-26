@@ -28,6 +28,7 @@
     <ClCompile Include="src\SpriteLife.c" />
     <ClCompile Include="src\SpritePlatform.c" />
     <ClCompile Include="src\SpritePlayer.c" />
+    <ClCompile Include="src\SpritePolkaman.c" />
     <ClCompile Include="src\SpritePop.c" />
     <ClCompile Include="src\SpriteWolf.c" />
     <ClCompile Include="src\StateGame.c" />

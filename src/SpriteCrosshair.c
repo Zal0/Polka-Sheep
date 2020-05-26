@@ -1,12 +1,11 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_CROSSHAIR = 2;
 
-void Start_SPRITE_CROSSHAIR() {
+void Start_SpriteCrosshair() {
 }
 
-void Update_SPRITE_CROSSHAIR() {
+void Update_SpriteCrosshair() {
 }
 
-void Destroy_SPRITE_CROSSHAIR() {
+void Destroy_SpriteCrosshair() {
 }

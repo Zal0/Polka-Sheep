@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_BUBBLE = 2;
 
 #include "SpriteManager.h"
 #include "Trig.h"
@@ -13,7 +12,7 @@ struct SpriteBubbleData {
 	UINT8 sin;
 };
 
-void Start_SPRITE_BUBBLE() {
+void Start_SpriteBubble() {
 	struct SpriteBubbleData* data = (struct SpriteBubbleData*)THIS->custom_data;
 	data->x = THIS->x;
 	data->y = THIS->y;
@@ -21,7 +20,7 @@ void Start_SPRITE_BUBBLE() {
 	SetSpriteAnim(THIS, anim_idle_bubble, 6);
 }
 
-void Update_SPRITE_BUBBLE() {
+void Update_SpriteBubble() {
 	struct SpriteBubbleData* data = (struct SpriteBubbleData*)THIS->custom_data;
 
 	THIS->x = data->x;
@@ -32,5 +31,5 @@ void Update_SPRITE_BUBBLE() {
 	THIS->y += COS(data->sin << 1) >> 6;
 }
 
-void Destroy_SPRITE_BUBBLE() {
+void Destroy_SpriteBubble() {
 }

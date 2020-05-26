@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_STATE_MENU = 2;
 
 #include <gb/gb.h>
 #include "ZGBMain.h"
@@ -12,7 +11,7 @@ extern struct MapInfo screen_start;
 
 extern const unsigned char * const polka_start_mod_Data[];
 extern UINT8 current_level;
-void Start_STATE_MENU() {
+void Start_StateMenu() {
 	InitScrollTiles(0, &screen_start_tiles);
 	InitScroll(&screen_start, 0, 0);
 	SHOW_BKG;
@@ -23,12 +22,12 @@ void Start_STATE_MENU() {
 
 extern const UINT8 max_energy;
 extern UINT8 current_energy;
-void Update_STATE_MENU() {
+void Update_StateMenu() {
 	if(previous_keys && !keys) {
 #ifdef NDEBUG
 		current_level = 0;
 #endif 
 		current_energy = max_energy;
-		SetState(STATE_GAME);
+		SetState(StateGame);
 	}
 }

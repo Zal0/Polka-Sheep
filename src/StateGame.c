@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_STATE_GAME = 2;
 
 #include "../res/src/tiles.h"
 #include "../res/src/font.h"
@@ -40,10 +39,11 @@ GameState game_state;
 extern const unsigned char * const polka_level1_mod_Data[];
 extern const unsigned char * const polka_win_mod_Data[];
 
-void Start_STATE_GAME() {
+void Start_StateGame() {
 	UINT8 i;
 	UINT16 start_x, start_y;
 	const struct MapInfo* level = levels[current_level];
+	UINT8 level_w, level_h;
 
 	SPRITES_8x16;
 	for(i = 0; i != N_SPRITE_TYPES; ++ i) {
@@ -62,8 +62,9 @@ void Start_STATE_GAME() {
 
 	DPRINT(6, 0, " DEBUG ");
 	
-	ScrollFindTile(level, 4, 0, 0, level->width, level->height, &start_x, &start_y);
-	scroll_target = SpriteManagerAdd(SPRITE_PLAYER, start_x << 3, (start_y - 1) << 3);
+	GetMapSize(level, &level_w, &level_h);
+	ScrollFindTile(level, 4, 0, 0, level_w, level_h, &start_x, &start_y);
+	scroll_target = SpriteManagerAdd(SpritePlayer, start_x << 3, (start_y - 1) << 3);
 
 	InitScrollTiles(0, &tiles);
 	InitScroll(level, collisions, 0);
@@ -124,7 +125,7 @@ void SetGBFade(UINT8 i) {
 
 UINT8 current_pal;
 INT8 pal_tick;
-void Update_STATE_GAME() {
+void Update_StateGame() {
 	struct Sprite* spr;
 	UINT8 i;
 
@@ -158,7 +159,7 @@ void Update_STATE_GAME() {
 				scroll_target = 0;
 				level_complete_time = 0;
 				SPRITEMANAGER_ITERATE(i, spr) {
-					if(spr->type != SPRITE_PLAYER && spr->type != SPRITE_FRIENDSHEEP && spr->type != SPRITE_POP) {
+					if(spr->type != SpritePlayer && spr->type != SpriteFriendSheep && spr->type != SpritePop) {
 						SpriteManagerRemove(i);
 					}
 				}
@@ -168,7 +169,7 @@ void Update_STATE_GAME() {
 #ifndef NDEBUG
 			if(KEY_TICKED(J_SELECT)) {
 				current_level ++;
-				SetState(STATE_GAME);
+				SetState(StateGame);
 			}
 #endif
 			break;
@@ -192,7 +193,7 @@ void Update_STATE_GAME() {
 			} else if(level_complete_time > 130) {
 					if(previous_keys && !keys) {
 						current_level ++;
-						SetState(current_level == num_levels ? STATE_GAMEEND : STATE_GAME);
+						SetState(current_level == num_levels ? StateGameEnd : StateGame);
 					}
 			}
 			

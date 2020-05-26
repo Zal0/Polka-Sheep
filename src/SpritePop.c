@@ -1,20 +1,19 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_POP = 2;
 
 #include "SpriteManager.h"
 
 UINT8 anim_pop_idle[] = {4, 0, 1, 1, 1};
 
-void Start_SPRITE_POP() {
+void Start_SpritePop() {
 	SetSpriteAnim(THIS, anim_pop_idle, 7);
 }
 
-void Update_SPRITE_POP() {
+void Update_SpritePop() {
 	if(THIS->anim_frame == 2) {
 		SpriteManagerRemove(THIS_IDX);
 	}
 }
 
-void Destroy_SPRITE_POP() {
+void Destroy_SpritePop() {
 }

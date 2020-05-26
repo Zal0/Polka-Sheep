@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_PLAYER = 2;
 
 #include "ZGBMain.h"
 #include "SpriteManager.h"
@@ -65,7 +64,7 @@ void RefreshLife() {
 }
 
 void ChangeState(SheepState next);
-void Start_SPRITE_PLAYER() {
+void Start_SpritePlayer() {
 	THIS->lim_y = 255;
 	THIS->coll_x = 5;
 	THIS->coll_w -= 10;
@@ -103,7 +102,7 @@ void ChangeState(SheepState next) {
 
 	switch (next) {
 		case AIMING:
-			crossHair = SpriteManagerAdd(SPRITE_CROSSHAIR, THIS->x, THIS->y);
+			crossHair = SpriteManagerAdd(SpriteCrosshair, THIS->x, THIS->y);
 			SetSpriteAnim(THIS, anim_idle, 5);
 			if(player_parent == 0) {
 				sheepAngMax = 128;
@@ -133,7 +132,7 @@ void Hit() {
 			current_energy--;
 			RefreshLife();
 			if(current_energy == 0) {
-				SetState(STATE_GAMEOVER);
+				SetState(StateGameOver);
 			} else {
 				SPRITE_SET_PALETTE(THIS, 1);
 				inmunity = inmunity_time;
@@ -144,7 +143,7 @@ void Hit() {
 //Wolf anim laughing
 extern UINT8 anim_laughing[];
 
-void Update_SPRITE_PLAYER() {
+void Update_SpritePlayer() {
 	UINT16 expected_x;
 	UINT16 expected_y;
 	UINT8 coll_tile;
@@ -256,17 +255,17 @@ void Update_SPRITE_PLAYER() {
 	}
 
 	SPRITEMANAGER_ITERATE(i, spr) {
-		if(i == THIS_IDX || spr->type == SPRITE_CROSSHAIR)
+		if(i == THIS_IDX || spr->type == SpriteCrosshair)
 			continue;
 
 		if(CheckCollision(THIS, spr)) {
-			if(spr->type == SPRITE_BIRD) {
+			if(spr->type == SpriteBird) {
 				Hit();
-			} else if(spr->type == SPRITE_WOLF) {
+			} else if(spr->type == SpriteWolf) {
 				Hit();
 				spr->custom_data[0] = 100; //Laughing See SpriteWolf.c
 				spr->anim_data = anim_laughing;
-			} else if(spr->type == SPRITE_LIFE) {
+			} else if(spr->type == SpriteLife) {
 				PlayFx(CHANNEL_1, 10, 0x45, 0x00, 0xff, 0x1f, 0x86);
 				SpriteManagerRemove(i);
 
@@ -276,14 +275,14 @@ void Update_SPRITE_PLAYER() {
 					current_energy++;
 					RefreshLife();
 				}
-			} else if(spr->type == SPRITE_PLATFORM && last_platform != spr && sheep_state == FLYING) {
+			} else if(spr->type == SpritePlatform && last_platform != spr && sheep_state == FLYING) {
 				PlayFx(CHANNEL_4, 10, 0x08, 0xf1, 0x3b, 0x80);
 				player_parent = spr;
 				ChangeState(AIMING);
-			} else if(spr->type == SPRITE_BUBBLE) {
+			} else if(spr->type == SpriteBubble) {
 				SpriteManagerRemove(i);
-				SpriteManagerAdd(SPRITE_POP, spr->x, spr->y);
-				SpriteManagerAdd(SPRITE_FRIENDSHEEP, spr->x, spr->y + 8);
+				SpriteManagerAdd(SpritePop, spr->x, spr->y);
+				SpriteManagerAdd(SpriteFriendSheep, spr->x, spr->y + 8);
 				ChangeState(DANCING);
 			}
 		}
@@ -304,5 +303,5 @@ void Update_SPRITE_PLAYER() {
 	}
 }
 
-void Destroy_SPRITE_PLAYER() {
+void Destroy_SpritePlayer() {
 }

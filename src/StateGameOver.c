@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_STATE_GAMEOVER = 2;
 
 #include "ZGBMain.h"
 #include "Keys.h"
@@ -14,7 +13,7 @@ extern struct TilesInfo wolf_gameover_tiles;
 extern struct MapInfo wolf_gameover;
 
 extern const unsigned char * const polka_lose_mod_Data[];
-void Start_STATE_GAMEOVER() {
+void Start_StateGameOver() {
 	InitScrollTiles(0, &wolf_gameover_tiles);
 	InitScroll(&wolf_gameover, 0, 0);
 	SHOW_BKG;
@@ -26,9 +25,9 @@ void Start_STATE_GAMEOVER() {
 	PlayMusic(polka_lose_mod_Data, 4, 0);
 }
 
-void Update_STATE_GAMEOVER() {
+void Update_StateGameOver() {
 	if(previous_keys && !keys) {
-		SetState(STATE_MENU);
+		SetState(StateMenu);
 	}
 }
 

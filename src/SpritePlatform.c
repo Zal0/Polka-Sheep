@@ -1,6 +1,5 @@
-#pragma bank 2
+#include "Banks/SetBank2.h"
 #include "main.h"
-UINT8 bank_SPRITE_PLATFORM = 2;
 
 #include "SpriteManager.h"
 #include "Scroll.h"
@@ -16,7 +15,7 @@ struct PlatformCustomData {
 	INT8 frame_accum;
 };
 
-void Start_SPRITE_PLATFORM() {
+void Start_SpritePlatform() {
 	UINT16 tile_x = THIS->x >> 3;
 	UINT16 tile_y = THIS->y >> 3;
 	UINT16 tile;
@@ -60,7 +59,7 @@ void Start_SPRITE_PLATFORM() {
 
 extern struct Sprite* player_parent;
 
-void Update_SPRITE_PLATFORM() {
+void Update_SpritePlatform() {
 	struct PlatformCustomData* data = (struct PlatformCustomData*)THIS->custom_data;
 	struct Sprite* sprite = THIS;
 	UINT8 offset_x = 8;
@@ -117,5 +116,5 @@ void Update_SPRITE_PLATFORM() {
 	}
 }
 
-void Destroy_SPRITE_PLATFORM() {
+void Destroy_SpritePlatform() {
 }
