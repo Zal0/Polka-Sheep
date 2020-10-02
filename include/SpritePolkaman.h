@@ -1,8 +1,0 @@
-#ifndef SPRITE_POLKAMAN_H
-#define SPRITE_POLKAMAN_H
-
-#include "main.h"
-
-DECLARE_SPRITE(SPRITE_POLKAMAN);
-
-#endif

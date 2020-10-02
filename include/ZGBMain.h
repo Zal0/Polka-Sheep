@@ -13,7 +13,7 @@ _SPRITE_DMG(SpritePlayer,      player     ) \
 _SPRITE_DMG(SpriteCrosshair,   crossair   ) \
 _SPRITE_DMG(SpriteBird,        bird       ) \
 _SPRITE_DMG(SpriteWolf,        wolf       ) \
-_SPRITE_DMG(SpritePolkaMan,    polkaman   ) \
+_SPRITE_DMG(SpritePolkaman,    polkaman   ) \
 _SPRITE_DMG(SpriteLife,        life       ) \
 _SPRITE_DMG(SpritePlatform,    platform   ) \
 _SPRITE_DMG(SpriteBubble,      bubble     ) \
