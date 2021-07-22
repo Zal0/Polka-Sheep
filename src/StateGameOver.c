@@ -8,11 +8,13 @@
 
 #include "Scroll.h"
 #include "Print.h"
+#include "Music.h"
 
 extern struct TilesInfo wolf_gameover_tiles;
 extern struct MapInfo wolf_gameover;
 
-extern const unsigned char * const polka_lose_mod_Data[];
+DECLARE_MUSIC(polka_lose);
+
 void Start_StateGameOver() {
 	InitScrollTiles(0, &wolf_gameover_tiles);
 	InitScroll(&wolf_gameover, 0, 0);
@@ -22,7 +24,7 @@ void Start_StateGameOver() {
 	INIT_FONT(font, PRINT_BKG);
 	PRINT(5, 1, "GAME OVER");
 
-	PlayMusic(polka_lose_mod_Data, 4, 0);
+	PlayMusic(polka_lose, 0);
 }
 
 void Update_StateGameOver() {

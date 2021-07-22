@@ -15,6 +15,8 @@
 #include "string.h"
 #include "Palette.h"
 #include "Keys.h"
+#include "gb/cgb.h"
+#include "Music.h"
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
@@ -36,8 +38,8 @@ typedef enum {
 } GameState;
 GameState game_state;
 
-extern const unsigned char * const polka_level1_mod_Data[];
-extern const unsigned char * const polka_win_mod_Data[];
+DECLARE_MUSIC(polka_level1);
+DECLARE_MUSIC(polka_win);
 
 void Start_StateGame() {
 	UINT8 i;
@@ -78,7 +80,7 @@ void Start_StateGame() {
 	friendsheep_sprite = 0;
 	game_state = PLAYING;
 
-	PlayMusic(polka_level1_mod_Data, 4, 1);
+	PlayMusic(polka_level1, 1);
 	NR52_REG = 0x80; //Enables sound, you should always setup this first
 	NR51_REG = 0xFF; //Enables all channels (left and right)
 	NR50_REG = 0x77; //Max volume
@@ -163,7 +165,7 @@ void Update_StateGame() {
 						SpriteManagerRemove(i);
 					}
 				}
-				PlayMusic(polka_win_mod_Data, 4, 0);
+				PlayMusic(polka_win, 0);
 			}
 
 #ifndef NDEBUG

@@ -5,11 +5,13 @@
 #include "ZGBMain.h"
 #include "Scroll.h"
 #include "Keys.h"
+#include "Music.h"
 
 extern struct TilesInfo screen_start_tiles;
 extern struct MapInfo screen_start;
 
-extern const unsigned char * const polka_start_mod_Data[];
+DECLARE_MUSIC(polka_start);
+
 extern UINT8 current_level;
 void Start_StateMenu() {
 	InitScrollTiles(0, &screen_start_tiles);
@@ -17,7 +19,7 @@ void Start_StateMenu() {
 	SHOW_BKG;
 	HIDE_WIN;
 
-	PlayMusic(polka_start_mod_Data, 4, 0);
+	PlayMusic(polka_start, 0);
 }
 
 extern const UINT8 max_energy;
