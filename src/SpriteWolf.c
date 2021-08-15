@@ -1,7 +1,6 @@
 #include "Banks/SetBank2.h"
 #include "main.h"
 
-#include "../res/src/Wolf.h"
 #include "SpriteManager.h"
 #include "Scroll.h"
 
@@ -22,8 +21,6 @@ void Start_SpriteWolf() {
 
 	SetSpriteAnim(THIS, anim_walking, 20u);
 
-	THIS->coll_x += 4;
-	THIS->coll_w -= 8;
 	THIS->lim_x = 160u;
 	THIS->lim_y = 160u;
 }
@@ -39,19 +36,19 @@ void Update_SpriteWolf() {
 	} else {
 		data->wolf_x_accum.w += 150 << delta_time;
 		if(data->wolf_x_accum.b.h != 0) {
-			if(SPRITE_GET_VMIRROR(THIS)) {
+			if(THIS->mirror == V_MIRROR) {
 				//moving left
 				if(TranslateSprite(THIS, -data->wolf_x_accum.b.h, 0)) {
-					SPRITE_UNSET_VMIRROR(THIS);
-				} else	if(!scroll_collisions[GetScrollTile(((THIS->x + THIS->coll_x) >> 3), (THIS->y >> 3) + 2u)]) {
-					SPRITE_UNSET_VMIRROR(THIS);
+					THIS->mirror = NO_MIRROR;
+				} else	if(!scroll_collisions[GetScrollTile((THIS->x >> 3), (THIS->y >> 3) + 2u)]) {
+					THIS->mirror = NO_MIRROR;
 				}
 			} else {
 				//moving right
 				if(TranslateSprite(THIS, data->wolf_x_accum.b.h, 0)) {
-					SPRITE_SET_VMIRROR(THIS);
-				} else if(!scroll_collisions[GetScrollTile(((THIS->x + THIS->coll_x + THIS->coll_w) >> 3), (THIS->y >> 3) + 2u)]) {
-					SPRITE_SET_VMIRROR(THIS);
+					THIS->mirror = V_MIRROR;
+				} else if(!scroll_collisions[GetScrollTile(((THIS->x + THIS->coll_w) >> 3), (THIS->y >> 3) + 2u)]) {
+					THIS->mirror = V_MIRROR;
 				}
 			}
 			data->wolf_x_accum.b.h = 0;

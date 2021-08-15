@@ -4,19 +4,16 @@
 #include "ZGBMain.h"
 #include "Keys.h"
 
-#include "../res/src/font.h"
-
 #include "Scroll.h"
 #include "Print.h"
 
-extern struct TilesInfo ending_tiles;
-extern struct MapInfo ending;
+IMPORT_MAP(ending);
+IMPORT_TILES(font);
 
 UINT8 game_over_state;
 
 void Start_StateGameEnd() {
-	InitScrollTiles(0, &ending_tiles);
-	InitScroll(&ending, 0, 0);
+	InitScroll(BANK(ending), &ending, 0, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 

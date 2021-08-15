@@ -1,10 +1,10 @@
 #include "Banks/SetBank2.h"
 #include "main.h"
 
-#include "../res/src/tiles.h"
-#include "../res/src/font.h"
-#include "../res/src/window.h"
-#include "../res/src/level_complete.h"
+IMPORT_TILES(font);
+IMPORT_MAP(window);
+IMPORT_TILES(tiles);
+IMPORT_MAP(level_complete);
 
 #include "ZGBMain.h"
 #include "Scroll.h"
@@ -13,10 +13,10 @@
 #include "Math.h"
 #include "Palette.h"
 #include "string.h"
-#include "Palette.h"
 #include "Keys.h"
 #include "gb/cgb.h"
 #include "Music.h"
+#include "Levels.h"
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
 
@@ -27,7 +27,7 @@ INT16 countdown;
 INT8 countdown_tick;
 extern UINT16 lifes_y[];
 
-extern const struct MapInfo* levels[];
+extern const struct MapInfoBanked levels[];
 
 extern struct Sprite* friendsheep_sprite;
 extern struct Sprite* player_sprite;
@@ -44,7 +44,7 @@ DECLARE_MUSIC(polka_win);
 void Start_StateGame() {
 	UINT8 i;
 	UINT16 start_x, start_y;
-	const struct MapInfo* level = levels[current_level];
+	const struct MapInfoBanked* level = &levels[current_level];
 	UINT8 level_w, level_h;
 
 	SPRITES_8x16;
@@ -52,24 +52,31 @@ void Start_StateGame() {
 		SpriteManagerLoad(i);
 	}
 	SHOW_SPRITES;
+
+#ifdef CGB
+	//TODO: ensure the Player has its own palette for the blinking effect when hit
+	if(_cpu == CGB_TYPE) {
+		spritePalsOffset[SpritePlayer] = 1;
+	}
+#endif
 	
 	INIT_FONT(font, PRINT_WIN);
 	WX_REG = 7;
-	WY_REG = (144 - (2 << 3));
+	WY_REG = 128;
 	scroll_h_border = 2 << 3;
-	InitWindow(0, 0, &window);
+	InitWindow(0, 0, BANK(window), &window);
 	SHOW_WIN;
 	PRINT_POS(0, 1);
 	Printf("Level %d", (UINT16)(current_level + 1));
 
 	DPRINT(6, 0, " DEBUG ");
 	
-	GetMapSize(level, &level_w, &level_h);
-	ScrollFindTile(level, 4, 0, 0, level_w, level_h, &start_x, &start_y);
-	scroll_target = SpriteManagerAdd(SpritePlayer, start_x << 3, (start_y - 1) << 3);
+	GetMapSize(level->bank, level->map, &level_w, &level_h);
+	ScrollFindTile(level->bank, level->map, 4, 0, 0, level_w, level_h, &start_x, &start_y);
+	scroll_target = SpriteManagerAdd(SpritePlayer, start_x << 3, ((start_y - 1) << 3) + 8);
 
 	InitScrollTiles(0, &tiles);
-	InitScroll(level, collisions, 0);
+	InitScroll(level->bank, level->map, collisions, 0);
 	SHOW_BKG;
 
 	countdown = 1024;
@@ -88,13 +95,6 @@ void Start_StateGame() {
 
 #define END_Y 85
 #define END_X 20
-const UINT8 pals[] = {PAL_DEF(0, 1, 2, 3), PAL_DEF(0, 0, 0, 0)};
-
-#ifdef CGB
-const UINT16 pal_on[]  = {RGB(31, 31, 31), RGB(20, 20, 20), RGB(10, 10, 10), RGB(0,   0,  0)};
-const UINT16 pal_off[] = {RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31)};
-const UINT16* pals_color[] = {pal_on, pal_off};
-#endif
 
 UWORD UpdateColorGame(UINT8 i, UWORD col) {
 	return RGB2(PAL_RED(col) | DespRight(0x1F, 5 - i), PAL_GREEN(col) | DespRight(0x1F, 5 - i), PAL_BLUE(col) | DespRight(0x1F, 5 - i));
@@ -125,8 +125,6 @@ void SetGBFade(UINT8 i) {
 		BGP_REG = PAL_DEF(0, 1, 2, 3) << (i << 1);
 }
 
-UINT8 current_pal;
-INT8 pal_tick;
 void Update_StateGame() {
 	struct Sprite* spr;
 	UINT8 i;
@@ -141,20 +139,6 @@ void Update_StateGame() {
 				PRINT_POS(0, 1);
 				Printf("t: %u ", countdown);
 			}*/
-
-			pal_tick -= 1 << delta_time;
-			if(U_LESS_THAN(pal_tick, 0)) {
-				pal_tick += 3;
-
-				current_pal ++;
-
-#ifdef CGB
-				if(_cpu == CGB_TYPE) {
-					SetPalette(SPRITES_PALETTE, 1, 1, pals_color[current_pal % 2], 2);
-				} else
-#endif
-					OBP1_REG = pals[current_pal % 2];
-			}
 
 			if(friendsheep_sprite != 0) {
 				game_state = LEVEL_COMPLETE;
@@ -185,7 +169,7 @@ void Update_StateGame() {
 			} else if(level_complete_time ==  80) {
 				player_sprite->x = player_sprite->x - scroll_x; friendsheep_sprite->x = friendsheep_sprite->x - scroll_x;
 				player_sprite->y = player_sprite->y - scroll_y; friendsheep_sprite->y = friendsheep_sprite->y - scroll_y;
-				InitScroll(&level_complete, 0, 0);
+				InitScroll(BANK(level_complete), &level_complete, 0, 0);
 			} else if(level_complete_time ==  90) {SetGBFade(2);
 			} else if(level_complete_time == 100) {SetGBFade(1);
 			} else if(level_complete_time == 110) {SetGBFade(0);
@@ -200,8 +184,8 @@ void Update_StateGame() {
 			}
 			
 
-			if(player_sprite->x != scroll_x + (144 - END_X))
-				player_sprite->x += U_LESS_THAN(player_sprite->x, scroll_x + (144 - END_X)) ? 1 : -1;
+			if(player_sprite->x != scroll_x + (150 - END_X))
+				player_sprite->x += U_LESS_THAN(player_sprite->x, scroll_x + (150 - END_X)) ? 1 : -1;
 
 			if(player_sprite->y != scroll_y + END_Y)
 				player_sprite->y += U_LESS_THAN(player_sprite->y, scroll_y + END_Y) ? 1 : -1;

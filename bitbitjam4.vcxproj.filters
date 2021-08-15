@@ -23,6 +23,9 @@
     <ClInclude Include="include\Trig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Levels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ZGBMain.c">

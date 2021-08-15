@@ -4,20 +4,17 @@
 #include "ZGBMain.h"
 #include "Keys.h"
 
-#include "../res/src/font.h"
-
 #include "Scroll.h"
 #include "Print.h"
 #include "Music.h"
 
-extern struct TilesInfo wolf_gameover_tiles;
-extern struct MapInfo wolf_gameover;
+IMPORT_TILES(font);
+IMPORT_MAP(wolf_gameover);
 
 DECLARE_MUSIC(polka_lose);
 
 void Start_StateGameOver() {
-	InitScrollTiles(0, &wolf_gameover_tiles);
-	InitScroll(&wolf_gameover, 0, 0);
+	InitScroll(BANK(wolf_gameover), &wolf_gameover, 0, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 

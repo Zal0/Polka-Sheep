@@ -10,6 +10,8 @@
 #include "Vector.h"
 #include "Scroll.h"
 #include "Sound.h"
+#include "Palette.h"
+#include "gb/cgb.h"
 
 extern const INT8 gravity;
 
@@ -66,10 +68,6 @@ void RefreshLife() {
 void ChangeState(SheepState next);
 void Start_SpritePlayer() {
 	THIS->lim_y = 255;
-	THIS->coll_x = 5;
-	THIS->coll_w -= 10;
-	THIS->coll_y = 8;
-	THIS->coll_h = 8;
 
 	sheep_state = NONE;
 	player_parent = 0;
@@ -134,7 +132,6 @@ void Hit() {
 			if(current_energy == 0) {
 				SetState(StateGameOver);
 			} else {
-				SPRITE_SET_PALETTE(THIS, 1);
 				inmunity = inmunity_time;
 			}
 	}
@@ -142,6 +139,16 @@ void Hit() {
 
 //Wolf anim laughing
 extern UINT8 anim_laughing[];
+
+UINT8 current_pal = 0;
+INT8 pal_tick = 0;
+const UINT8 pals[] = {PAL_DEF(0, 1, 2, 3), PAL_DEF(0, 0, 0, 0)};
+
+#ifdef CGB
+const UINT16 pal_on[]  = {RGB(31, 31, 31), RGB(20, 20, 20), RGB(10, 10, 10), RGB(0,   0,  0)};
+const UINT16 pal_off[] = {RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31)};
+const UINT16* pals_color[] = {pal_on, pal_off};
+#endif
 
 void Update_SpritePlayer() {
 	UINT16 expected_x;
@@ -167,8 +174,8 @@ void Update_SpritePlayer() {
 			}
 
 			sheepAng = sheepAngStart + sheepAngOffset;			
-			crossHair->x = THIS->x - 4 + 8 + (SIN(sheepAng) >> 3); //-4 to center the cross, +8 to center in the sprite
-			crossHair->y = THIS->y - 4 + 8 + (COS(sheepAng) >> 3);
+			crossHair->x = THIS->x - 4 + 3 + (SIN(sheepAng) >> 3); //-4 to center the cross, +3 to center in the sprite
+			crossHair->y = THIS->y - 4 + (COS(sheepAng) >> 3);
 
 			if(KEY_RELEASED(J_A)) {
 				speed_x = SIN(sheepAng) << 2;
@@ -292,13 +299,28 @@ void Update_SpritePlayer() {
 		inmunity -= (1 << delta_time);
 		if(inmunity < 1) {
 			inmunity = 0;
-			SPRITE_SET_PALETTE(THIS, 0);
 
 			if(sheep_state == AIMING && sheepAngStart == 192) {
 				if(TranslateSprite(THIS, 0, 1) == 18) {
 					Hit();
 				}
 			}
+
+			pal_tick = 0; //This forces the palette to be 0 after after the next if
+			current_pal = 1;
+		}
+
+		pal_tick -= 1 << delta_time;
+		if(U_LESS_THAN(pal_tick, 0)) {
+			pal_tick += 3;
+			current_pal ++;
+
+#ifdef CGB
+			if(_cpu == CGB_TYPE) {
+				SetPalette(SPRITES_PALETTE, 1, 1, pals_color[current_pal % 2], 2);
+			} else
+#endif
+			OBP1_REG = pals[current_pal % 2];
 		}
 	}
 }

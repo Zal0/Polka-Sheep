@@ -30,9 +30,9 @@ void Update_SpriteBird() {
 	THIS->x += (INT8)(SIN(data->ang) >> 2);
 
 	if(THIS->x > prev_x) {
-		SPRITE_UNSET_VMIRROR(THIS);
+		THIS->mirror = NO_MIRROR;
 	} else if(THIS->x != prev_x) {
-		SPRITE_SET_VMIRROR(THIS);
+		THIS->mirror = V_MIRROR;
 	}
 }
 

@@ -51,8 +51,7 @@ void Start_SpritePlatform() {
 		}
 	}
 
-	THIS->coll_y = 5;
-	THIS->coll_h = 6;
+	THIS->y += 5;
 	THIS->lim_x = 100u;
 	THIS->lim_y = 100u;
 }
@@ -63,7 +62,7 @@ void Update_SpritePlatform() {
 	struct PlatformCustomData* data = (struct PlatformCustomData*)THIS->custom_data;
 	struct Sprite* sprite = THIS;
 	UINT8 offset_x = 8;
-	UINT8 offset_y = 8;
+	UINT8 offset_y = 3;
 	UINT8 tile;
 	UINT16 old_x, old_y;
 

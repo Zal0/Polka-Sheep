@@ -7,15 +7,13 @@
 #include "Keys.h"
 #include "Music.h"
 
-extern struct TilesInfo screen_start_tiles;
-extern struct MapInfo screen_start;
+IMPORT_MAP(screen_start);
 
 DECLARE_MUSIC(polka_start);
 
 extern UINT8 current_level;
 void Start_StateMenu() {
-	InitScrollTiles(0, &screen_start_tiles);
-	InitScroll(&screen_start, 0, 0);
+	InitScroll(BANK(screen_start), &screen_start, 0, 0);
 	SHOW_BKG;
 	HIDE_WIN;
 

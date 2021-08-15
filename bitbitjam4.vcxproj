@@ -39,6 +39,7 @@
     <ClCompile Include="src\ZGBMain.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Levels.h" />
     <ClInclude Include="include\Trig.h" />
     <ClInclude Include="include\ZGBMain.h" />
   </ItemGroup>
