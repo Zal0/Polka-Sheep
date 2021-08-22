@@ -1,4 +1,4 @@
-#include "Banks/SetBank2.h"
+#include "Banks/SetAutoBank.h"
 #include "main.h"
 
 IMPORT_TILES(font);
@@ -16,18 +16,52 @@ IMPORT_MAP(level_complete);
 #include "Keys.h"
 #include "gb/cgb.h"
 #include "Music.h"
-#include "Levels.h"
+
+IMPORT_MAP(maplevel1);
+IMPORT_MAP(maplevellobo);
+IMPORT_MAP(maplevelpajaro);
+IMPORT_MAP(maplevelpuzzlesencilloylobo);
+IMPORT_MAP(maplevelsubida);
+IMPORT_MAP(maplevelpinchosabajo);
+IMPORT_MAP(maplevelplataformashorizontal);
+IMPORT_MAP(maplevelplataformaslobopajaro);
+IMPORT_MAP(maplevelsubidapajaritos);
+IMPORT_MAP(maplevelescondrijo);
+IMPORT_MAP(mapleveldospisos);
+IMPORT_MAP(maplevelsubidapro);
+IMPORT_MAP(maplevelsubidapinchos);
+
+#define BANKED_MAP(MAP) {BANK(MAP), &MAP}
+
+struct MapInfoBanked {
+	UINT8 bank;
+	struct MapInfo* map;
+};
+
+const struct MapInfoBanked levels[] = {
+	BANKED_MAP(maplevel1),
+	BANKED_MAP(maplevellobo),
+	BANKED_MAP(maplevelpuzzlesencilloylobo),
+	BANKED_MAP(maplevelpajaro),
+	BANKED_MAP(maplevelsubida),
+	BANKED_MAP(maplevelplataformashorizontal),
+	BANKED_MAP(maplevelpinchosabajo),
+	BANKED_MAP(maplevelplataformaslobopajaro),
+	BANKED_MAP(maplevelsubidapinchos),
+	BANKED_MAP(maplevelsubidapajaritos),
+	BANKED_MAP(maplevelescondrijo),
+	BANKED_MAP(mapleveldospisos),
+	BANKED_MAP(maplevelsubidapro),
+};
+
+UINT8 current_level = 0;
+const UINT8 num_levels = 13;
 
 UINT8 collisions[] = {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 0};
-
-extern UINT8 current_level;
-extern const UINT8 num_levels;
 
 INT16 countdown;
 INT8 countdown_tick;
 extern UINT16 lifes_y[];
-
-extern const struct MapInfoBanked levels[];
 
 extern struct Sprite* friendsheep_sprite;
 extern struct Sprite* player_sprite;

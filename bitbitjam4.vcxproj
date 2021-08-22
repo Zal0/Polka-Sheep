@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameParams.c" />
-    <ClCompile Include="src\Levels.c" />
     <ClCompile Include="src\SpriteBird.c" />
     <ClCompile Include="src\SpriteBubble.c" />
     <ClCompile Include="src\SpriteCrosshair.c" />
@@ -39,7 +38,6 @@
     <ClCompile Include="src\ZGBMain.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Levels.h" />
     <ClInclude Include="include\Trig.h" />
     <ClInclude Include="include\ZGBMain.h" />
   </ItemGroup>

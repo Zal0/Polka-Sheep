@@ -1,4 +1,4 @@
-#include "Banks/SetBank2.h"
+#include "Banks/SetAutoBank.h"
 #include "main.h"
 
 UINT8 anim_horiz[] = {2, 0, 1};
