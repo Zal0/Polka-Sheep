@@ -1,11 +1,6 @@
 #include "Banks/SetAutoBank.h"
 #include "main.h"
 
-IMPORT_TILES(font);
-IMPORT_MAP(window);
-IMPORT_TILES(tiles);
-IMPORT_MAP(level_complete);
-
 #include "ZGBMain.h"
 #include "Scroll.h"
 #include "SpriteManager.h"
@@ -16,6 +11,10 @@ IMPORT_MAP(level_complete);
 #include "Keys.h"
 #include "gb/cgb.h"
 #include "Music.h"
+
+IMPORT_TILES(font);
+IMPORT_MAP(window);
+IMPORT_MAP(level_complete);
 
 IMPORT_MAP(maplevel1);
 IMPORT_MAP(maplevellobo);
@@ -108,8 +107,6 @@ void Start_StateGame() {
 	GetMapSize(level->bank, level->map, &level_w, &level_h);
 	ScrollFindTile(level->bank, level->map, 4, 0, 0, level_w, level_h, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SpritePlayer, start_x << 3, ((start_y - 1) << 3) + 8);
-
-	InitScrollTiles(0, &tiles);
 	InitScroll(level->bank, level->map, collisions, 0);
 	SHOW_BKG;
 
