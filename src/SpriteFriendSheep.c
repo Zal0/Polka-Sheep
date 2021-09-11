@@ -3,7 +3,7 @@
 
 #include "SpriteManager.h"
 UINT8 anim_friendsheep_idle[] = {2, 0, 1};
-struct Sprite* friendsheep_sprite = 0;
+Sprite* friendsheep_sprite = 0;
 
 void Start_SpriteFriendSheep() {
 	friendsheep_sprite = THIS;

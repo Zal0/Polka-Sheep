@@ -62,8 +62,8 @@ INT16 countdown;
 INT8 countdown_tick;
 extern UINT16 lifes_y[];
 
-extern struct Sprite* friendsheep_sprite;
-extern struct Sprite* player_sprite;
+extern Sprite* friendsheep_sprite;
+extern Sprite* player_sprite;
 UINT16 level_complete_time;
 typedef enum {
 	PLAYING,
@@ -157,7 +157,7 @@ void SetGBFade(UINT8 i) {
 }
 
 void Update_StateGame() {
-	struct Sprite* spr;
+	Sprite* spr;
 	UINT8 i;
 
 	switch(game_state) {

@@ -20,8 +20,8 @@ UINT8 anim_flying_r[] = {8, 2, 3, 4, 5, 6, 7, 8, 9};
 UINT8 anim_flying_l[] = {8, 9, 8, 7, 6, 5, 4, 3, 2};
 UINT8 anim_dancing[] = {2, 10, 11};
 
-struct Sprite* crossHair;
-struct Sprite* player_sprite;
+Sprite* crossHair;
+Sprite* player_sprite;
 UINT8 sheepAngStart = 64;
 UINT8 sheepAngOffset = 0;
 UINT8 sheepAngMax = 128;
@@ -42,8 +42,8 @@ fixed accum_y;
 INT16 speed_x;
 INT16 speed_y;
 
-struct Sprite* player_parent = 0;
-struct Sprite* last_platform = 0;
+Sprite* player_parent = 0;
+Sprite* last_platform = 0;
 
 extern const UINT8 max_energy;
 UINT8 current_energy;
@@ -155,7 +155,7 @@ void Update_SpritePlayer() {
 	UINT16 expected_y;
 	UINT8 coll_tile;
 	UINT8 i;
-	struct Sprite* spr;
+	Sprite* spr;
 	UINT8 sheepAng;
 
 	switch(sheep_state) {

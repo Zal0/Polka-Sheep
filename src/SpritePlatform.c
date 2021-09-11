@@ -55,11 +55,11 @@ void Start_SpritePlatform() {
 	THIS->lim_y = 100u;
 }
 
-extern struct Sprite* player_parent;
+extern Sprite* player_parent;
 
 void Update_SpritePlatform() {
 	struct PlatformCustomData* data = (struct PlatformCustomData*)THIS->custom_data;
-	struct Sprite* sprite = THIS;
+	Sprite* sprite = THIS;
 	UINT8 offset_x = 8;
 	UINT8 offset_y = 3;
 	UINT8 tile;
