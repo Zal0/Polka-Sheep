@@ -15,7 +15,6 @@ DECLARE_MUSIC(polka_lose);
 
 void Start_StateGameOver() {
 	InitScroll(BANK(wolf_gameover), &wolf_gameover, 0, 0);
-	SHOW_BKG;
 	HIDE_WIN;
 
 	INIT_FONT(font, PRINT_BKG);

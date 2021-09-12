@@ -16,6 +16,7 @@ void Start_SpriteBubble() {
 	struct SpriteBubbleData* data = (struct SpriteBubbleData*)THIS->custom_data;
 	data->x = THIS->x;
 	data->y = THIS->y;
+	data->sin = 0;
 
 	SetSpriteAnim(THIS, anim_idle_bubble, 6);
 }

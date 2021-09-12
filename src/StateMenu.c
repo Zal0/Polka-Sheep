@@ -14,7 +14,6 @@ DECLARE_MUSIC(polka_start);
 extern UINT8 current_level;
 void Start_StateMenu() {
 	InitScroll(BANK(screen_start), &screen_start, 0, 0);
-	SHOW_BKG;
 	HIDE_WIN;
 
 	PlayMusic(polka_start, 0);

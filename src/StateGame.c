@@ -75,16 +75,9 @@ DECLARE_MUSIC(polka_level1);
 DECLARE_MUSIC(polka_win);
 
 void Start_StateGame() {
-	UINT8 i;
 	UINT16 start_x, start_y;
 	const struct MapInfoBanked* level = &levels[current_level];
 	UINT8 level_w, level_h;
-
-	SPRITES_8x16;
-	for(i = 0; i != N_SPRITE_TYPES; ++ i) {
-		SpriteManagerLoad(i);
-	}
-	SHOW_SPRITES;
 
 #ifdef CGB
 	//TODO: ensure the Player has its own palette for the blinking effect when hit
@@ -108,7 +101,6 @@ void Start_StateGame() {
 	ScrollFindTile(level->bank, level->map, 4, 0, 0, level_w, level_h, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SpritePlayer, start_x << 3, ((start_y - 1) << 3) + 8);
 	InitScroll(level->bank, level->map, collisions, 0);
-	SHOW_BKG;
 
 	countdown = 1024;
 	countdown_tick = -1; //Force first update

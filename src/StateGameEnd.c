@@ -14,7 +14,6 @@ UINT8 game_over_state;
 
 void Start_StateGameEnd() {
 	InitScroll(BANK(ending), &ending, 0, 0);
-	SHOW_BKG;
 	HIDE_WIN;
 
 	INIT_FONT(font, PRINT_BKG);
