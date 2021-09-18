@@ -12,7 +12,7 @@ IMPORT_MAP(screen_start);
 DECLARE_MUSIC(polka_start);
 
 extern UINT8 current_level;
-void Start_StateMenu() {
+void START() {
 	InitScroll(BANK(screen_start), &screen_start, 0, 0);
 	HIDE_WIN;
 
@@ -21,7 +21,7 @@ void Start_StateMenu() {
 
 extern const UINT8 max_energy;
 extern UINT8 current_energy;
-void Update_StateMenu() {
+void UPDATE() {
 	if(previous_keys && !keys) {
 #ifdef NDEBUG
 		current_level = 0;

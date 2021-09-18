@@ -6,14 +6,14 @@
 
 UINT8 anim_idle_bubble[] = {8, 0, 0, 0, 1, 0, 0, 0, 0};
 
-struct SpriteBubbleData {
+typedef struct {
 	UINT16 x;
 	UINT16 y;
 	UINT8 sin;
-};
+} CUSTOM_DATA;
 
-void Start_SpriteBubble() {
-	struct SpriteBubbleData* data = (struct SpriteBubbleData*)THIS->custom_data;
+void START() {
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 	data->x = THIS->x;
 	data->y = THIS->y;
 	data->sin = 0;
@@ -21,8 +21,8 @@ void Start_SpriteBubble() {
 	SetSpriteAnim(THIS, anim_idle_bubble, 6);
 }
 
-void Update_SpriteBubble() {
-	struct SpriteBubbleData* data = (struct SpriteBubbleData*)THIS->custom_data;
+void UPDATE() {
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 
 	THIS->x = data->x;
 	THIS->y = data->y;
@@ -32,5 +32,5 @@ void Update_SpriteBubble() {
 	THIS->y += COS(data->sin << 1) >> 6;
 }
 
-void Destroy_SpriteBubble() {
+void DESTROY() {
 }

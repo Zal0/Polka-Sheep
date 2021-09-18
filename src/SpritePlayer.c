@@ -66,7 +66,7 @@ void RefreshLife() {
 }
 
 void ChangeState(SheepState next);
-void Start_SpritePlayer() {
+void START() {
 	THIS->lim_y = 255;
 
 	sheep_state = NONE;
@@ -150,7 +150,7 @@ const UINT16 pal_off[] = {RGB(31, 31, 31), RGB(31, 31, 31), RGB(31, 31, 31), RGB
 const UINT16* pals_color[] = {pal_on, pal_off};
 #endif
 
-void Update_SpritePlayer() {
+void UPDATE() {
 	UINT16 expected_x;
 	UINT16 expected_y;
 	UINT8 coll_tile;
@@ -325,5 +325,5 @@ void Update_SpritePlayer() {
 	}
 }
 
-void Destroy_SpritePlayer() {
+void DESTROY() {
 }

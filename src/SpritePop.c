@@ -5,15 +5,15 @@
 
 UINT8 anim_pop_idle[] = {4, 0, 1, 1, 1};
 
-void Start_SpritePop() {
+void START() {
 	SetSpriteAnim(THIS, anim_pop_idle, 7);
 }
 
-void Update_SpritePop() {
+void UPDATE() {
 	if(THIS->anim_frame == 2) {
 		SpriteManagerRemove(THIS_IDX);
 	}
 }
 
-void Destroy_SpritePop() {
+void DESTROY() {
 }

@@ -10,17 +10,17 @@
 
 #define START_TILE 19u
 
-struct PlatformCustomData {
+typedef struct {
 	INT8 vx, vy;
 	INT8 frame_accum;
-};
+} CUSTOM_DATA;
 
-void Start_SpritePlatform() {
+void START() {
 	UINT16 tile_x = THIS->x >> 3;
 	UINT16 tile_y = THIS->y >> 3;
 	UINT16 tile;
 
-	struct PlatformCustomData* data = (struct PlatformCustomData*)THIS->custom_data;
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 	data->frame_accum = 0;
 
 	tile = GetScrollTile(tile_x + 1, tile_y);
@@ -57,8 +57,8 @@ void Start_SpritePlatform() {
 
 extern Sprite* player_parent;
 
-void Update_SpritePlatform() {
-	struct PlatformCustomData* data = (struct PlatformCustomData*)THIS->custom_data;
+void UPDATE() {
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 	Sprite* sprite = THIS;
 	UINT8 offset_x = 8;
 	UINT8 offset_y = 3;
@@ -114,5 +114,5 @@ void Update_SpritePlatform() {
 	}
 }
 
-void Destroy_SpritePlatform() {
+void DESTROY() {
 }

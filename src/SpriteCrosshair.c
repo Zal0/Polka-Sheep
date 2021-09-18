@@ -1,11 +1,11 @@
 #include "Banks/SetAutoBank.h"
 #include "main.h"
 
-void Start_SpriteCrosshair() {
+void START() {
 }
 
-void Update_SpriteCrosshair() {
+void UPDATE() {
 }
 
-void Destroy_SpriteCrosshair() {
+void DESTROY() {
 }

@@ -9,20 +9,20 @@
 
 UINT8 anim_flying[] = {3, 0, 1, 2};
 
-struct SpriteBirdData {
+typedef struct {
 	INT8 ang;
-};
+} CUSTOM_DATA;
 
-void Start_SpriteBird() {
-	struct  SpriteBirdData* data = (struct  SpriteBirdData*) THIS->custom_data;
+void START() {
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 	data->ang = (scroll_target->x < THIS->x) ? 128 :0;
 
 	THIS->lim_x = 64;
 	SetSpriteAnim(THIS, anim_flying, 13);
 }
 
-void Update_SpriteBird() {
-	struct  SpriteBirdData* data = (struct  SpriteBirdData*) THIS->custom_data;
+void UPDATE() {
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 	INT16 prev_x = THIS->x;
 	
 	THIS->x -= (INT8)(SIN(data->ang) >> 2);
@@ -36,5 +36,5 @@ void Update_SpriteBird() {
 	}
 }
 
-void Destroy_SpriteBird() {
+void DESTROY() {
 }

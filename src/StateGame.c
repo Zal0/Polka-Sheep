@@ -74,7 +74,7 @@ GameState game_state;
 DECLARE_MUSIC(polka_level1);
 DECLARE_MUSIC(polka_win);
 
-void Start_StateGame() {
+void START() {
 	UINT16 start_x, start_y;
 	const struct MapInfoBanked* level = &levels[current_level];
 	UINT8 level_w, level_h;
@@ -148,7 +148,7 @@ void SetGBFade(UINT8 i) {
 		BGP_REG = PAL_DEF(0, 1, 2, 3) << (i << 1);
 }
 
-void Update_StateGame() {
+void UPDATE() {
 	Sprite* spr;
 	UINT8 i;
 

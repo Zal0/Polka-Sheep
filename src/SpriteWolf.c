@@ -9,13 +9,13 @@ UINT8 anim_laughing[] = {2, 2, 3};
 
 extern INT16 inmunity;
 
-struct SpriteWolfData {
+typedef struct {
 	INT16 laughing;
 	fixed wolf_x_accum;
-};
+} CUSTOM_DATA;
 
-void Start_SpriteWolf() {
-	struct SpriteWolfData* data = (struct SpriteWolfData*)THIS->custom_data;
+void START() {
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 	data->laughing = 0;
 	data->wolf_x_accum.w = 0;
 
@@ -25,8 +25,8 @@ void Start_SpriteWolf() {
 	THIS->lim_y = 160u;
 }
 
-void Update_SpriteWolf() {
-	struct SpriteWolfData* data = (struct SpriteWolfData*)THIS->custom_data;
+void UPDATE() {
+	CUSTOM_DATA* data = (CUSTOM_DATA*) THIS->custom_data;
 	if(data->laughing) {
 		data->laughing -= 1 << delta_time;
 		if(data->laughing < 1) {
@@ -62,5 +62,5 @@ void Update_SpriteWolf() {
 	}
 }
 
-void Destroy_SpriteWolf() {
+void DESTROY() {
 }

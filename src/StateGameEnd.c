@@ -12,7 +12,7 @@ IMPORT_TILES(font);
 
 UINT8 game_over_state;
 
-void Start_StateGameEnd() {
+void START() {
 	InitScroll(BANK(ending), &ending, 0, 0);
 	HIDE_WIN;
 
@@ -22,7 +22,7 @@ void Start_StateGameEnd() {
 	game_over_state = 0;
 }
 
-void Update_StateGameEnd() {
+void UPDATE() {
 	if(previous_keys && !keys) {
 		switch(game_over_state) {
 			case 0:

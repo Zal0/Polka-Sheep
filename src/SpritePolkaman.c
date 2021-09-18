@@ -6,13 +6,13 @@ UINT8 anim_horiz_flipped[] = {2, 4, 5};
 UINT8 anim_verti[] = {2, 2, 3};
 
 
-void Start_SpritePolkaman() {
+void START() {
 
 }
 
-void Update_SpritePolkaman() {
+void UPDATE() {
 
 }
 
-void Destroy_SpritePolkaman() {
+void DESTROY() {
 }
