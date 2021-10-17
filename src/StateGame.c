@@ -88,7 +88,7 @@ void START() {
 	
 	INIT_FONT(font, PRINT_WIN);
 	WX_REG = 7;
-	WY_REG = 128;
+	SetWindowY(128);
 	scroll_h_border = 2 << 3;
 	InitWindow(0, 0, BANK(window), &window);
 	SHOW_WIN;
