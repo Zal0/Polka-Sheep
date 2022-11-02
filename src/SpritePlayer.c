@@ -54,7 +54,7 @@ INT16 inmunity = 0;
 
 const UINT8 HEART_TILE = 1;
 const UINT8 EMPTY_HEART_TILE = 2;
-void RefreshLife() {
+void RefreshLife() BANKED {
 	UINT8 i;
 
 	for(i = 0; i != current_energy; ++i) {
@@ -77,8 +77,6 @@ void START() {
 	accum_x.w = 0;
 	accum_y.w = 0;
 	ChangeState(AIMING);
-
-	RefreshLife();
 
 	sheepAngStart = 192;
 	sheepAngOffset = 64;

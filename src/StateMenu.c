@@ -13,7 +13,7 @@ DECLARE_MUSIC(polka_start);
 
 extern UINT8 current_level;
 void START() {
-	InitScroll(BANK(screen_start), &screen_start, 0, 0);
+	LoadMap(0, 0, 0, BANK(screen_start), &screen_start);
 	HIDE_WIN;
 
 	PlayMusic(polka_start, 0);

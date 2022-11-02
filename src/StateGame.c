@@ -74,6 +74,8 @@ GameState game_state;
 DECLARE_MUSIC(polka_level1);
 DECLARE_MUSIC(polka_win);
 
+void RefreshLife() BANKED;
+
 void START() {
 	UINT16 start_x, start_y;
 	const struct MapInfoBanked* level = &levels[current_level];
@@ -86,21 +88,20 @@ void START() {
 	}
 #endif
 	
-	INIT_FONT(font, PRINT_WIN);
-	WX_REG = 7;
-	SetWindowY(128);
-	scroll_h_border = 2 << 3;
-	InitWindow(0, 0, BANK(window), &window);
-	SHOW_WIN;
-	PRINT_POS(0, 1);
-	Printf("Level %d", (UINT16)(current_level + 1));
-
-	DPRINT(6, 0, " DEBUG ");
-	
 	GetMapSize(level->bank, level->map, &level_w, &level_h);
 	ScrollFindTile(level->bank, level->map, 4, 0, 0, level_w, level_h, &start_x, &start_y);
 	scroll_target = SpriteManagerAdd(SpritePlayer, start_x << 3, ((start_y - 1) << 3) + 8);
 	InitScroll(level->bank, level->map, collisions, 0);
+
+	INIT_HUD(window);
+	RefreshLife();
+
+	INIT_FONT(font, PRINT_WIN);
+	PRINT_POS(0, 1);
+	Printf("Level %d", (UINT16)(current_level + 1));
+
+	DPRINT(6, 0, " DEBUG ");
+
 
 	countdown = 1024;
 	countdown_tick = -1; //Force first update
